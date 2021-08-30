@@ -30,4 +30,10 @@ public class Company {
     private String password;
     private String logo;
 
+    public Company(String name, String email, String password, String logo) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.logo = logo;
+    }
 }

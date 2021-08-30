@@ -22,14 +22,15 @@ public class Job {
     private ExperienceType experienceType;
     private String companyImage;
     private String category;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private int salary;
     private String city;
 
-    @ManyToOne
+    @OneToOne(targetEntity = Company.class, cascade = CascadeType.ALL)
     private Company company;
 
-    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String companyImage, String category, String description, int salary, String city) {
+    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String companyImage, String category, String description, int salary, String city, Company company) {
         this.name = name;
         this.date = date;
         this.country = country;
@@ -40,6 +41,7 @@ public class Job {
         this.description = description;
         this.salary = salary;
         this.city = city;
+        this.company = company;
     }
 
 }
