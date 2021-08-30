@@ -14,13 +14,12 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String title;
     private LocalDate date;
     private String country;
     private String jobType;
     @Enumerated(EnumType.STRING)
     private ExperienceType experienceType;
-    private String companyImage;
     private String category;
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -30,13 +29,12 @@ public class Job {
     @OneToOne(targetEntity = Company.class, cascade = CascadeType.ALL)
     private Company company;
 
-    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String companyImage, String category, String description, int salary, String city, Company company) {
-        this.name = name;
+    public Job(String title, LocalDate date, String country, String jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {
+        this.title = title;
         this.date = date;
         this.country = country;
         this.jobType = jobType;
         this.experienceType = experienceType;
-        this.companyImage = companyImage;
         this.category = category;
         this.description = description;
         this.salary = salary;
