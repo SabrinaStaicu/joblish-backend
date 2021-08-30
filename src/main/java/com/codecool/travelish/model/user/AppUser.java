@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,14 +18,14 @@ public class User {
     private String city;
     private String intro;
     private int phone;
-    @OneToOne
+    @OneToOne(targetEntity=Resume.class, fetch=FetchType.EAGER,cascade = {CascadeType.ALL})
     private Resume resume;
     private String avatar;
     private String email;
 //    private String password;
 
 
-    public User(String firstName, String lastName, String country, String city, String intro, int phone, Resume resume, String avatar, String email) {
+    public AppUser(String firstName, String lastName, String country, String city, String intro, int phone, Resume resume, String avatar, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
