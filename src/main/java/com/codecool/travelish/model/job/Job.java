@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
-public class JobOffer {
+public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -27,7 +27,7 @@ public class JobOffer {
     private String city;
 
 
-    public JobOffer(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String company, String companyImage, String category, String description, int salary, String city) {
+    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String company, String companyImage, String category, String description, int salary, String city) {
         this.name = name;
         this.date = date;
         this.country = country;
