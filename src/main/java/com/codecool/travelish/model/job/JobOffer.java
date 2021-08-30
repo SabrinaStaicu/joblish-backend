@@ -5,12 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
-@Entity
 public class JobOffer {
     private Long id;
     private String name;
     private LocalDate date;
-    private JobLocation location;
+    private String country;
     private String jobType;
     private ExperienceType experienceType;
     private String company;
@@ -18,11 +17,13 @@ public class JobOffer {
     private String category;
     private String description;
     private int salary;
+    private String city;
 
-    public JobOffer(String name, LocalDate date, JobLocation location, String jobType, ExperienceType experienceType, String company, String companyImage, String category, String description, int salary) {
+
+    public JobOffer(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String company, String companyImage, String category, String description, int salary, String city) {
         this.name = name;
         this.date = date;
-        this.location = location;
+        this.country = country;
         this.jobType = jobType;
         this.experienceType = experienceType;
         this.company = company;
@@ -30,6 +31,7 @@ public class JobOffer {
         this.category = category;
         this.description = description;
         this.salary = salary;
+        this.city = city;
     }
 
     public JobOffer() {
@@ -49,15 +51,6 @@ public class JobOffer {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    @OneToOne
-    public JobLocation getLocation() {
-        return location;
-    }
-
-    public void setLocation(JobLocation location) {
-        this.location = location;
     }
 
     public String getJobType() {
@@ -120,8 +113,23 @@ public class JobOffer {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
