@@ -13,9 +13,9 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany
+    @OneToMany(targetEntity=UserExperience.class,cascade = CascadeType.ALL)
     private List<UserExperience> experience;
-    @OneToMany
+    @OneToMany(targetEntity = UserEducation.class, cascade=CascadeType.ALL)
     private List<UserEducation> education;
 
     public Resume(List<UserExperience> experience, List<UserEducation> education) {
