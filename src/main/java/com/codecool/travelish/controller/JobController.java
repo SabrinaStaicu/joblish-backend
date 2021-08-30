@@ -32,6 +32,9 @@ public class JobController {
 
     @GetMapping("/search")
     public ResponseEntity<List<JobOffer>> searchJobs(@RequestParam(required=false, name="category") String category, @RequestParam(required=false, name="name") String name){
+        if (category != null && name != null) {
+            return ResponseEntity.ok(jobService.findAllJobsByNameAndCategory(category, name));
+        }
         if (name != null) {
             return ResponseEntity.ok(jobService.findAllJobsByName(name));
         }
