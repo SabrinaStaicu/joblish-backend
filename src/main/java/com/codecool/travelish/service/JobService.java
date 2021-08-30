@@ -29,7 +29,7 @@ public class JobService {
     public List<Job> findAllJobsByName(String name) {
         return jobsRepository.findAllByNameContaining(name);
     }
-    public List<JobOffer> findAllJobsByNameAndCategory(String category,String name) {
+    public List<Job> findAllJobsByNameAndCategory(String category,String name) {
         return jobsRepository.findAllByCategoryAndNameContaining(category,name);
     }
 }
