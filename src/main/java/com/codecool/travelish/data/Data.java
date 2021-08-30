@@ -1,11 +1,14 @@
 package com.codecool.travelish.data;
 
+import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.model.application.ApplicationStatus;
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.JobsRepository;
 import com.codecool.travelish.repository.AppUserRepository;
+import com.codecool.travelish.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,13 +17,15 @@ import java.time.LocalDate;
 
 @Component
 public class Data implements CommandLineRunner {
-    private JobsRepository jobsRepository;
-    private AppUserRepository appUserRepository;
+    private final JobsRepository jobsRepository;
+    private final AppUserRepository appUserRepository;
+    private final ApplicationService applicationService;
 
     @Autowired
-    public Data(JobsRepository jobsRepository, AppUserRepository appUserRepository){
+    public Data(JobsRepository jobsRepository, AppUserRepository appUserRepository, ApplicationService applicationService){
         this.jobsRepository = jobsRepository;
         this.appUserRepository = appUserRepository;
+        this.applicationService = applicationService;
     }
 
     @Override
@@ -33,6 +38,9 @@ public class Data implements CommandLineRunner {
 
         jobsRepository.save(job);
         appUserRepository.save(appUser);
+
+        Application application = new Application(ApplicationStatus.Pending, job, appUser);
+        applicationService.save(application);
 
     }
 }

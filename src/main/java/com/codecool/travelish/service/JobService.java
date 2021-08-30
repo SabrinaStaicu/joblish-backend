@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class JobService {
-    private JobsRepository jobsRepository;
+    private final JobsRepository jobsRepository;
 
     @Autowired
     public JobService(JobsRepository jobsRepository) {
@@ -19,6 +19,11 @@ public class JobService {
 
     public void saveJob(Job job) {
         jobsRepository.save(job);
+    }
+
+    public Job findById(Long id) {
+        return jobsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Could not find job with id: " + id));
     }
 
     public List<Job> findAllJobs() {

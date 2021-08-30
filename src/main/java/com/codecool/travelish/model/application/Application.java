@@ -23,5 +23,9 @@ public class Application {
     @ManyToOne
     private AppUser appUser;
 
-
+    public Application(ApplicationStatus status, Job job, AppUser appUser) {
+        this.status = status;
+        this.job = job;
+        this.appUser = appUser;
+    }
 }
