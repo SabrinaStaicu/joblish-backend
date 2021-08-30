@@ -1,42 +1,25 @@
 package com.codecool.travelish.model.user;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Data
+@NoArgsConstructor
 public class Resume {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @OneToMany
     private List<UserExperience> experience;
+    @OneToMany
     private List<UserEducation> education;
 
-    public Resume(Long id, List<UserExperience> experience, List<UserEducation> education) {
-        this.id = id;
+    public Resume(List<UserExperience> experience, List<UserEducation> education) {
         this.experience = experience;
-        this.education = education;
-    }
-
-    public Resume() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<UserExperience> getExperience() {
-        return experience;
-    }
-
-    public void setExperience(List<UserExperience> experience) {
-        this.experience = experience;
-    }
-
-    public List<UserEducation> getEducation() {
-        return education;
-    }
-
-    public void setEducation(List<UserEducation> education) {
         this.education = education;
     }
 }

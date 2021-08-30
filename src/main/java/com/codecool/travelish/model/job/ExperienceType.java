@@ -4,4 +4,5 @@ public enum ExperienceType {
     JUNIOR,
     MID,
     SENIOR,
+    MANAGER,
 }
