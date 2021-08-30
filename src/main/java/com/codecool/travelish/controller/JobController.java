@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/jobs")
 public class JobController {
-    private JobService jobService;
+    private final JobService jobService;
 
     @Autowired
     public JobController(JobService jobService) {

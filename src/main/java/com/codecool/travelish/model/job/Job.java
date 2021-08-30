@@ -1,5 +1,6 @@
 package com.codecool.travelish.model.job;
 
+import com.codecool.travelish.model.company.Company;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,21 +20,21 @@ public class Job {
     private String jobType;
     @Enumerated(EnumType.STRING)
     private ExperienceType experienceType;
-    private String company;
     private String companyImage;
     private String category;
     private String description;
     private int salary;
     private String city;
 
+    @ManyToOne
+    private Company company;
 
-    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String company, String companyImage, String category, String description, int salary, String city) {
+    public Job(String name, LocalDate date, String country, String jobType, ExperienceType experienceType, String companyImage, String category, String description, int salary, String city) {
         this.name = name;
         this.date = date;
         this.country = country;
         this.jobType = jobType;
         this.experienceType = experienceType;
-        this.company = company;
         this.companyImage = companyImage;
         this.category = category;
         this.description = description;

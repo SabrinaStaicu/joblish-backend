@@ -24,7 +24,7 @@ public class Data implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Job job = new Job("JOB1", LocalDate.now(),"Romania","Remote", ExperienceType.JUNIOR,"Microsoft","no-image","It","asdasdasd",99,"Bucharest");
+        Job job = new Job("JOB1", LocalDate.now(),"Romania","Remote", ExperienceType.JUNIOR,"no-image","It","asdasdasd",99,"Bucharest");
 
         AppUser appUser = new AppUser("andreiandrei", "Andrei","Penica","Bucharest","exp","3423423422","avatar@yahoo.com", "password");
         jobsRepository.save(job);
