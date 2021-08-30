@@ -1,9 +1,8 @@
 package com.codecool.travelish.controller;
 
-import com.codecool.travelish.model.job.JobOffer;
+import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +23,7 @@ public class JobController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<JobOffer>> getAllJobs(){
-//        return new ResponseEntity<>(jobService.findAllJobs(), HttpStatus.OK);
+    public ResponseEntity<List<Job>> getAllJobs(){
         return ResponseEntity.ok(jobService.findAllJobs());
     }
 }

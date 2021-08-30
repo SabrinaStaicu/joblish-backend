@@ -1,11 +1,8 @@
 package com.codecool.travelish.data;
 
 import com.codecool.travelish.model.job.ExperienceType;
-import com.codecool.travelish.model.job.JobOffer;
+import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.model.user.Resume;
-import com.codecool.travelish.model.user.UserEducation;
-import com.codecool.travelish.model.user.UserExperience;
 import com.codecool.travelish.repository.JobsRepository;
 import com.codecool.travelish.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +25,10 @@ public class Data implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        JobOffer jobOffer = new JobOffer("JOB1", LocalDate.now(),"Romania","Remote", ExperienceType.JUNIOR,"Microsoft","no-image","It","asdasdasd",99,"Bucharest");
-        UserEducation education = new UserEducation("scoala");
-        UserExperience experience = new UserExperience("experience", "It");
-        Resume resume = new Resume(List.of(experience), List.of(education));
-        AppUser appUser = new AppUser("Andrei","Penica","Romania","Bucharest","asdas",1234,resume,"avatar","email");
-        jobsRepository.save(jobOffer);
+        Job job = new Job("JOB1", LocalDate.now(),"Romania","Remote", ExperienceType.JUNIOR,"Microsoft","no-image","It","asdasdasd",99,"Bucharest");
+
+        AppUser appUser = new AppUser("andreiandrei", "Andrei","Penica","Bucharest","exp","3423423422","avatar@yahoo.com", "password");
+        jobsRepository.save(job);
         userRepository.save(appUser);
 
     }

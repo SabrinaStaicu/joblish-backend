@@ -1,7 +1,7 @@
 package com.codecool.travelish.model.application;
 
-import com.codecool.travelish.model.job.JobOffer;
-import com.codecool.travelish.model.user.User;
+import com.codecool.travelish.model.job.Job;
+import com.codecool.travelish.model.user.AppUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,10 +18,10 @@ public class Application {
     private ApplicationStatus status;
 
     @ManyToOne
-    private JobOffer jobOffer;
+    private Job job;
 
     @ManyToOne
-    private User user;
+    private AppUser appUser;
 
 
 }
