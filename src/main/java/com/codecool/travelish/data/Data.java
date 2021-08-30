@@ -4,23 +4,22 @@ import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.JobsRepository;
-import com.codecool.travelish.repository.UserRepository;
+import com.codecool.travelish.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class Data implements CommandLineRunner {
     private JobsRepository jobsRepository;
-    private UserRepository userRepository;
+    private AppUserRepository appUserRepository;
 
     @Autowired
-    public Data(JobsRepository jobsRepository, UserRepository userRepository){
+    public Data(JobsRepository jobsRepository, AppUserRepository appUserRepository){
         this.jobsRepository = jobsRepository;
-        this.userRepository = userRepository;
+        this.appUserRepository = appUserRepository;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class Data implements CommandLineRunner {
 
         AppUser appUser = new AppUser("andreiandrei", "Andrei","Penica","Bucharest","exp","3423423422","avatar@yahoo.com", "password");
         jobsRepository.save(job);
-        userRepository.save(appUser);
+        appUserRepository.save(appUser);
 
     }
 }

@@ -23,4 +23,10 @@ public class JobService {
     public List<Job> findAllJobs() {
         return jobsRepository.findAll();
     }
+    public List<Job> findAllJobsByCategory(String category) {
+        return jobsRepository.findAllByCategory(category);
+    }
+    public List<Job> findAllJobsByName(String name) {
+        return jobsRepository.findAllByNameContaining(name);
+    }
 }
