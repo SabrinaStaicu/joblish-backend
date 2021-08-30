@@ -1,10 +1,9 @@
 package com.codecool.travelish.service;
 
-import com.codecool.travelish.model.job.JobOffer;
+import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -17,17 +16,17 @@ public class JobService {
         this.jobsRepository = jobsRepository;
     }
 
-    public void saveJob(JobOffer jobOffer) {
-        jobsRepository.save(jobOffer);
+    public void saveJob(Job job) {
+        jobsRepository.save(job);
     }
 
-    public List<JobOffer> findAllJobs() {
+    public List<Job> findAllJobs() {
         return jobsRepository.findAll();
     }
-    public List<JobOffer> findAllJobsByCategory(String category) {
+    public List<Job> findAllJobsByCategory(String category) {
         return jobsRepository.findAllByCategory(category);
     }
-    public List<JobOffer> findAllJobsByName(String name) {
+    public List<Job> findAllJobsByName(String name) {
         return jobsRepository.findAllByNameContaining(name);
     }
     public List<JobOffer> findAllJobsByNameAndCategory(String category,String name) {

@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -12,29 +15,33 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank
+    @Size(max = 25)
+    private String username;
     private String firstName;
     private String lastName;
-    private String country;
     private String city;
-    private String intro;
-    private int phone;
-    @OneToOne(targetEntity=Resume.class, fetch=FetchType.EAGER,cascade = {CascadeType.ALL})
-    private Resume resume;
-    private String avatar;
+    private String experience;
+    private String phone;
+    private String picture;
+    @NotBlank
+    @Size(max = 50)
+    @Email
     private String email;
-//    private String password;
+    @NotBlank
+    @Size(min = 5, max = 30)
+    private String password;
 
 
-    public AppUser(String firstName, String lastName, String country, String city, String intro, int phone, Resume resume, String avatar, String email) {
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.country = country;
         this.city = city;
-        this.intro = intro;
+        this.experience = experience;
         this.phone = phone;
-        this.resume = resume;
-        this.avatar = avatar;
+        this.picture = avatar;
         this.email = email;
+        this.password = password;
     }
 
 }

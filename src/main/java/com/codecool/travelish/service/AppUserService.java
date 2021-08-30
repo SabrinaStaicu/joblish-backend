@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomerService {
+public class AppUserService {
 
     private List<AppUser> users = new ArrayList<>();
 }
