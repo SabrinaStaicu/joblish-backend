@@ -39,4 +39,9 @@ public class ApplicationController {
         applicationService.removeApplication(id);
         return ResponseEntity.ok("Application has been removed.");
     }
+
+    @GetMapping("/filter-by-job/{id}")
+    public ResponseEntity<List<Application>> getAllByJobId(@PathVariable Long id) {
+        return ResponseEntity.ok(applicationService.findAllByJobId(id));
+    }
 }

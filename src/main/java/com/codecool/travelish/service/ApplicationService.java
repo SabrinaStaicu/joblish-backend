@@ -38,4 +38,8 @@ public class ApplicationService {
     public void removeApplication(Long id) {
         applicationRepository.deleteById(id);
     }
+
+    public List<Application> findAllByJobId(Long id) {
+        return applicationRepository.findAllByJobId(id);
+    }
 }
