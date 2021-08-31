@@ -30,22 +30,22 @@ public class JobController {
         return ResponseEntity.ok(jobService.findAllJobs());
     }
 
-//    @GetMapping("/search")
-//    public ResponseEntity<List<Job>> searchJobs(@RequestParam(required=false, name="category") String category, @RequestParam(required=false, name="name") String name){
-//        if (!category.equals("undefined") && name != null) {
-//            return ResponseEntity.ok(jobService.findAllJobsByNameAndCategory(category, name));
-//        }
-//        if (name != null) {
-//            return ResponseEntity.ok(jobService.findAllJobsByName(name));
-//        }
-//        if (!category.equals("undefined")) {
-//            return ResponseEntity.ok(jobService.findAllJobsByCategory(category));
-//        }
-//        return ResponseEntity.ok(jobService.findAllJobs());
-//    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Job>> searchJobs(@RequestParam(required=false, name="category") String category, @RequestParam(required=false, name="name") String name){
+        if (!category.equals("undefined") && name != null) {
+            return ResponseEntity.ok(jobService.findAllJobsByNameAndCategory(category, name));
+        }
+        if (name != null) {
+            return ResponseEntity.ok(jobService.findAllJobsByName(name));
+        }
+        if (!category.equals("undefined")) {
+            return ResponseEntity.ok(jobService.findAllJobsByCategory(category));
+        }
+        return ResponseEntity.ok(jobService.findAllJobs());
+    }
 
-//    @GetMapping("/filter")
-//    public ResponseEntity<List<Job>> filterJobs(@RequestParam(required=false, name="category") String category,@RequestParam(required=false, name="jobType") String jobType,@RequestParam(required=false, name="country") String country,@RequestParam(required=false, name="experienceType") ExperienceType experienceType){
-//        return ResponseEntity.ok(jobService.filterJobs(category, jobType, country,experienceType));
-//    }
+    @GetMapping("/filter")
+    public ResponseEntity<List<Job>> filterJobs(@RequestParam(required=false, name="category") String category,@RequestParam(required=false, name="jobType") String jobType,@RequestParam(required=false, name="country") String country,@RequestParam(required=false, name="experienceType") ExperienceType experienceType){
+        return ResponseEntity.ok(jobService.filterJobs(country,jobType,experienceType,category));
+    }
 }

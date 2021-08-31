@@ -42,4 +42,10 @@ public class Job {
         this.company = company;
     }
 
+    public Job(String country, String jobType, ExperienceType experienceType, String category) {
+        this.country = country;
+        this.jobType = jobType;
+        this.experienceType = experienceType;
+        this.category = category;
+    }
 }
