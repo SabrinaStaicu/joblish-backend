@@ -44,4 +44,9 @@ public class ApplicationController {
     public ResponseEntity<List<Application>> getAllByJobId(@PathVariable Long id) {
         return ResponseEntity.ok(applicationService.findAllByJobId(id));
     }
+
+    @GetMapping("/user-has-applied/{userId}/{jobTitle}/{companyName}")
+    public ResponseEntity<Boolean> userHasAlreadyApplied(@PathVariable Long userId, @PathVariable String jobTitle, @PathVariable String companyName) {
+        return ResponseEntity.ok(applicationService.appUserHasApplied(userId, jobTitle, companyName));
+    }
 }

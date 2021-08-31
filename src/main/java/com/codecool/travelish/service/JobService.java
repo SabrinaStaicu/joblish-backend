@@ -53,5 +53,4 @@ public class JobService {
         return jobsRepository.findAll(exampleQuery);
 
     }
-
 }
