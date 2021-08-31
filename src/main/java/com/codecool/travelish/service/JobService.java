@@ -54,6 +54,7 @@ public class JobService {
         List<Job> fillteredJobs = new ArrayList<>();
         List<Job> copy;
 
+
         if (!category.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCategory().equals(category)).collect(Collectors.toList());
 
