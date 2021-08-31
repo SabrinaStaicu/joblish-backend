@@ -49,11 +49,11 @@ public class JobService {
 
     }
 
-    public List<Job> filterJobs(String country, List<String> jobType, ExperienceType experienceType, String category){
+    public List<Job> filterJobs(String country, List<String> jobType, List<String> experienceType, String category){
         List<Job> jobs = jobsRepository.findAll();
         List<Job> fillteredJobs = new ArrayList<>();
         List<Job> copy;
-
+        List<Job> copy2 = new ArrayList<>();
 
         if (!category.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCategory().equals(category)).collect(Collectors.toList());
@@ -71,6 +71,23 @@ public class JobService {
             if (!jobtype.equals("undefined")) {
 //                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
                 fillteredJobs.addAll(copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList()));
+            }
+        }
+
+        copy2 = !fillteredJobs.isEmpty() ? fillteredJobs : jobs;
+
+
+        long totalFilters = experienceType.stream().filter(str -> str.equals("undefined")).count();
+        if (totalFilters < 4) {
+            fillteredJobs = new ArrayList<>();
+            jobs = new ArrayList<>();
+        }
+
+
+        for (String experience : experienceType) {
+            if (!experience.equals("undefined")) {
+//                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
+                fillteredJobs.addAll(copy2.stream().filter(job -> job.getExperienceType().toString().equals(experience)).collect(Collectors.toList()));
             }
         }
 
