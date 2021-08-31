@@ -27,7 +27,7 @@ public class Job {
     private int salary;
     private String city;
 
-    @OneToOne(targetEntity = Company.class, cascade = CascadeType.ALL)
+    @ManyToOne
     private Company company;
 
     public Job(String title, LocalDate date, String country, String  jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {

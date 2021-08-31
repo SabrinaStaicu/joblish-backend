@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.codecool.travelish.repository.ApplicationRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ApplicationService {
@@ -41,5 +42,9 @@ public class ApplicationService {
 
     public List<Application> findAllByJobId(Long id) {
         return applicationRepository.findAllByJobId(id);
+    }
+
+    public Boolean appUserHasApplied(Long userId, String jobTitle, String companyName) {
+        return getAllByUserId(userId).stream().anyMatch(application -> application.getJob().getTitle().equals(jobTitle) && application.getJob().getCompany().getName().equals(companyName));
     }
 }

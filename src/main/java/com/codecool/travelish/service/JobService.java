@@ -92,5 +92,4 @@ public class JobService {
         return !fillteredJobs.isEmpty() ? fillteredJobs : jobs;
 
     }
-
 }
