@@ -34,4 +34,8 @@ public class ApplicationService {
         application.setJob(jobService.findById(jobId));
         save(application);
     }
+
+    public void removeApplication(Long id) {
+        applicationRepository.deleteById(id);
+    }
 }

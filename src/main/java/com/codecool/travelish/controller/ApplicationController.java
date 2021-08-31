@@ -33,4 +33,10 @@ public class ApplicationController {
         applicationService.addApplication(application, userId, jobId);
         return ResponseEntity.ok("Job added.");
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> removeApplication(@PathVariable Long id) {
+        applicationService.removeApplication(id);
+        return ResponseEntity.ok("Application has been removed.");
+    }
 }

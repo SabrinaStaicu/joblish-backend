@@ -79,6 +79,6 @@ public class JobService {
 //    }
 
     public List<Job> findByCompanyId(Long id) {
-        return jobsRepository.findByCompanyId(id);
+        return jobsRepository.findAllByCompanyId(id);
     }
 }

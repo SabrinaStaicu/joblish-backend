@@ -18,7 +18,6 @@ public class CompanyController {
 
     private final CompanyService companyService;
 
-
     @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
