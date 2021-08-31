@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,7 +30,7 @@ public class Job {
     @OneToOne(targetEntity = Company.class, cascade = CascadeType.ALL)
     private Company company;
 
-    public Job(String title, LocalDate date, String country, String jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {
+    public Job(String title, LocalDate date, String country, String  jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {
         this.title = title;
         this.date = date;
         this.country = country;
@@ -42,7 +43,7 @@ public class Job {
         this.company = company;
     }
 
-    public Job(String country, String jobType, ExperienceType experienceType, String category) {
+    public Job(String country, String  jobType, ExperienceType experienceType, String category) {
         this.country = country;
         this.jobType = jobType;
         this.experienceType = experienceType;

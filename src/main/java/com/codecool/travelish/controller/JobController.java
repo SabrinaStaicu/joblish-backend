@@ -42,7 +42,7 @@ public class JobController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<Job>> filterJobs(@RequestParam(required=false, name="category") String category,@RequestParam(required=false, name="jobType") String jobType,@RequestParam(required=false, name="country") String country,@RequestParam(required=false, name="experienceType") ExperienceType experienceType){
+    public ResponseEntity<List<Job>> filterJobs(@RequestParam(required=false, name="category") String category,@RequestParam(required=false, name="jobType") List<String> jobType,@RequestParam(required=false, name="country") String country,@RequestParam(required=false, name="experienceType") ExperienceType experienceType){
         return ResponseEntity.ok(jobService.filterJobs(country,jobType,experienceType,category));
     }
 

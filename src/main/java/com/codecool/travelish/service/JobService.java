@@ -8,7 +8,9 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
@@ -47,10 +49,47 @@ public class JobService {
 
     }
 
-    public List<Job> filterJobs(String country, String jobType, ExperienceType experienceType, String category){
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("salary").withIgnoreNullValues();
-        Example<Job> exampleQuery = Example.of(new Job(country,jobType,experienceType,category), matcher);
-        return jobsRepository.findAll(exampleQuery);
+    public List<Job> filterJobs(String country, List<String> jobType, ExperienceType experienceType, String category){
+        List<Job> jobs = jobsRepository.findAll();
+        List<Job> fillteredJobs = new ArrayList<>();
+        List<Job> copy;
+
+        if (!category.equals("undefined")) {
+            jobs = jobs.stream().filter(job -> job.getCategory().equals(category)).collect(Collectors.toList());
+
+        }
+
+
+        if (!country.equals("undefined")) {
+            jobs = jobs.stream().filter(job -> job.getCountry().equals(country)).collect(Collectors.toList());
+        }
+
+        copy= jobs;
+
+        for (String jobtype : jobType) {
+            if (!jobtype.equals("undefined")) {
+//                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
+                fillteredJobs.addAll(copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList()));
+            }
+        }
+
+
+
+
+
+//        if (category.equals("undefined")) {
+//            category = null;
+//        }
+//        if (jobType.equals("undefined")) {
+//            jobType = null;
+//        }
+//        if (country.equals("undefined")) {
+//            country = null;
+//        }
+//
+//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("salary").withIgnoreNullValues();
+//        Example<Job> exampleQuery = Example.of(new Job(country,jobType,experienceType,category), matcher);
+        return !fillteredJobs.isEmpty() ? fillteredJobs : jobs;
 
     }
 
