@@ -51,7 +51,6 @@ public class JobService {
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("salary").withIgnoreNullValues();
         Example<Job> exampleQuery = Example.of(new Job(country,jobType,experienceType,category), matcher);
         return jobsRepository.findAll(exampleQuery);
-
     }
 
 }

@@ -27,4 +27,6 @@ public class CompanyController {
     public ResponseEntity<List<Company>> getAll() {
         return ResponseEntity.ok(companyService.findAll());
     }
+
+
 }

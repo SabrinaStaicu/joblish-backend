@@ -29,11 +29,15 @@ public class Company {
     @Size(min = 5)
     private String password;
     private String logo;
+    private String description;
+    private String category;
 
-    public Company(String name, String email, String password, String logo) {
+    public Company(String name, String email, String password, String logo, String description, String category) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.logo = logo;
+        this.description = description;
+        this.category = category;
     }
 }

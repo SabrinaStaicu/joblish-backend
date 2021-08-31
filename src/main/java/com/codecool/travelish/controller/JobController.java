@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +44,10 @@ public class JobController {
     @GetMapping("/filter")
     public ResponseEntity<List<Job>> filterJobs(@RequestParam(required=false, name="category") String category,@RequestParam(required=false, name="jobType") String jobType,@RequestParam(required=false, name="country") String country,@RequestParam(required=false, name="experienceType") ExperienceType experienceType){
         return ResponseEntity.ok(jobService.filterJobs(country,jobType,experienceType,category));
+    }
+
+    @GetMapping("/filter-by-company/{companyId}")
+    public ResponseEntity<List<Job>> filterJobsByCompanyId(@PathVariable Long companyId) {
+        return ResponseEntity.ok(jobService.findByCompanyId(companyId));
     }
 }

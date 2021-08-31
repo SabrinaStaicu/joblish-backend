@@ -16,7 +16,7 @@ public class Application {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
-
+    private String notes;
     @ManyToOne
     private Job job;
 
