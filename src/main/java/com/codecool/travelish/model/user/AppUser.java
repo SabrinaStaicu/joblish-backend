@@ -31,9 +31,10 @@ public class AppUser {
     @NotBlank
     @Size(min = 5, max = 30)
     private String password;
+    private Boolean lookingForJob;
 
 
-    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password) {
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, Boolean lookingForJob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -42,6 +43,7 @@ public class AppUser {
         this.picture = avatar;
         this.email = email;
         this.password = password;
+        this.lookingForJob = lookingForJob;
     }
 
 }

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -26,6 +25,7 @@ public class Job {
     private String description;
     private int salary;
     private String city;
+
 
     @ManyToOne
     private Company company;

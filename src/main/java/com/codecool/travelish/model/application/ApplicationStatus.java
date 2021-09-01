@@ -4,5 +4,4 @@ public enum ApplicationStatus {
     Denied,
     Not_seen,
     Accepted,
-    Pending
 }
