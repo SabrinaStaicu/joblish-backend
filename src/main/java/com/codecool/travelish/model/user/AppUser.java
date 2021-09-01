@@ -1,6 +1,7 @@
 package com.codecool.travelish.model.user;
 
 import com.codecool.travelish.model.job.Job;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,8 +40,7 @@ public class AppUser {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Job> favoriteJobs;
 
-
-    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, Boolean lookingForJob) {
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -59,4 +60,10 @@ public class AppUser {
         favoriteJobs.remove(job);
     }
 
+    public AppUser(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }
