@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,7 +42,10 @@ public class AppUser {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Job> favoriteJobs;
 
-    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, boolean lookingForJob) {
+    @ElementCollection
+    private List<String> skills = new ArrayList<>();
+
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, boolean lookingForJob, List<String> skills) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -50,6 +55,7 @@ public class AppUser {
         this.email = email;
         this.password = password;
         this.lookingForJob = lookingForJob;
+        this.skills = skills;
     }
 
     public void addToFavorites(Job job) {
