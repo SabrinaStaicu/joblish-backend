@@ -23,7 +23,7 @@ public class AppUserService {
                 .orElseThrow(() -> new IllegalArgumentException("Could not find user with id: " + id));
     }
 
-    public void addUser(AppUser appUser) {
+    public void save(AppUser appUser) {
         appUserRepository.save(appUser);
     }
 }

@@ -29,7 +29,7 @@ public class AppUserController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addUser(@RequestBody AppUser appUser){
-        appUserService.addUser(appUser);
+        appUserService.save(appUser);
         return ResponseEntity.ok("User added");
     }
 }

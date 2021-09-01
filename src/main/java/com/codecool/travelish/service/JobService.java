@@ -1,12 +1,9 @@
 package com.codecool.travelish.service;
 
-import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -86,19 +83,12 @@ public class JobService {
             fillteredJobs = new ArrayList<>();
             jobs = new ArrayList<>();
         }
-
-
         for (String experience : experienceType) {
             if (!experience.equals("undefined")) {
 //                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
                 fillteredJobs.addAll(copy2.stream().filter(job -> job.getExperienceType().toString().equals(experience)).collect(Collectors.toList()));
             }
         }
-
-
-
-
-
 //        if (category.equals("undefined")) {
 //            category = null;
 //        }
