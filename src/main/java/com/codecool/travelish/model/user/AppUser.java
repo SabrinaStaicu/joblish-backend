@@ -1,5 +1,6 @@
 package com.codecool.travelish.model.user;
 
+import com.codecool.travelish.model.job.Job;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Data
@@ -33,6 +35,9 @@ public class AppUser {
     private String password;
     private Boolean lookingForJob;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Job> favoriteJobs;
+
 
     public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, Boolean lookingForJob) {
         this.firstName = firstName;
@@ -44,6 +49,14 @@ public class AppUser {
         this.email = email;
         this.password = password;
         this.lookingForJob = lookingForJob;
+    }
+
+    public void addToFavorites(Job job) {
+        favoriteJobs.add(job);
+    }
+
+    public void removeFromFavorites(Job job) {
+        favoriteJobs.remove(job);
     }
 
 }

@@ -2,6 +2,7 @@ package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
+import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -10,15 +11,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class JobService {
     private final JobsRepository jobsRepository;
+    private final AppUserService appUserService;
 
     @Autowired
-    public JobService(JobsRepository jobsRepository) {
+    public JobService(JobsRepository jobsRepository, AppUserService appUserService) {
         this.jobsRepository = jobsRepository;
+        this.appUserService = appUserService;
     }
 
     public void saveJob(Job job) {
@@ -109,5 +113,25 @@ public class JobService {
 //        Example<Job> exampleQuery = Example.of(new Job(country,jobType,experienceType,category), matcher);
         return !fillteredJobs.isEmpty() ? fillteredJobs : jobs;
 
+    }
+
+    public void addToJobToFavorites(Long userId, Long jobId) {
+        AppUser user = appUserService.findById(userId);
+        user.addToFavorites(findById(jobId));
+        appUserService.save(user);
+    }
+
+    public void removeJobFromFavorites(Long userId, Long jobId) {
+        AppUser user = appUserService.findById(userId);
+        user.removeFromFavorites(findById(jobId));
+        appUserService.save(user);
+    }
+
+    public Boolean jobIsSaved(Long userId, Long jobId) {
+        return appUserService.findById(userId).getFavoriteJobs().contains(findById(jobId));
+    }
+
+    public Set<Job> findAllSavedJobs(Long userId) {
+        return appUserService.findById(userId).getFavoriteJobs();
     }
 }

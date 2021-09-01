@@ -22,4 +22,8 @@ public class AppUserService {
         return appUserRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find user with id: " + id));
     }
+
+    public void save(AppUser appUser) {
+        appUserRepository.save(appUser);
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @CrossOrigin("*")
@@ -49,5 +50,27 @@ public class JobController {
     @GetMapping("/filter-by-company/{companyId}")
     public ResponseEntity<List<Job>> filterJobsByCompanyId(@PathVariable Long companyId) {
         return ResponseEntity.ok(jobService.findByCompanyId(companyId));
+    }
+
+    @GetMapping("/add-favorites/{userId}/{jobId}")
+    public ResponseEntity<String> addToFavorites(@PathVariable Long userId, @PathVariable Long jobId) {
+        jobService.addToJobToFavorites(userId, jobId);
+        return ResponseEntity.ok("Job has been added to favorites.");
+    }
+
+    @GetMapping("/remove-favorites/{userId}/{jobId}")
+    public ResponseEntity<String> removeFromFavorites(@PathVariable Long userId, @PathVariable Long jobId) {
+        jobService.removeJobFromFavorites(userId, jobId);
+        return ResponseEntity.ok("Job has been removed from favorites.");
+    }
+
+    @GetMapping("/favorites-contain-job/{userId}/{jobId}")
+    public ResponseEntity<Boolean> favoritesContainJob(@PathVariable Long userId, @PathVariable Long jobId) {
+        return ResponseEntity.ok(jobService.jobIsSaved(userId, jobId));
+    }
+
+    @GetMapping("/get-favorite-jobs/{userId}")
+    public ResponseEntity<Set<Job>> getAllSavedJobs(@PathVariable Long userId) {
+        return ResponseEntity.ok(jobService.findAllSavedJobs(userId));
     }
 }
