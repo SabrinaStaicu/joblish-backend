@@ -40,7 +40,7 @@ public class AppUser {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Job> favoriteJobs;
 
-    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password) {
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, boolean lookingForJob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
