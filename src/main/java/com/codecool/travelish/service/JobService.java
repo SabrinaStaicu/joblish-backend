@@ -26,6 +26,10 @@ public class JobService {
         jobsRepository.save(job);
     }
 
+    public void saveAllJobs(List<Job> jobs) {
+        jobsRepository.saveAll(jobs);
+    }
+
     public Job findById(Long id) {
         return jobsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find job with id: " + id));
@@ -34,9 +38,11 @@ public class JobService {
     public List<Job> findAllJobs() {
         return jobsRepository.findAll();
     }
+
     public List<Job> findAllJobsByCategory(String category) {
         return jobsRepository.findAllByCategory(category);
     }
+
     public List<Job> findAllJobsByName(String name) {
         return jobsRepository.findAllByTitleContaining(name);
     }

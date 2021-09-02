@@ -27,7 +27,6 @@ public class Job {
     private int salary;
     private String city;
 
-
     @ManyToOne
     private Company company;
 
