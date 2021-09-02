@@ -1,12 +1,11 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.codecool.travelish.repository.ApplicationRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ApplicationService {

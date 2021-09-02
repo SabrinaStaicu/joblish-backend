@@ -17,7 +17,8 @@ public class Job {
     private String title;
     private LocalDate date;
     private String country;
-    private String jobType;
+    @Enumerated(EnumType.STRING)
+    private JobType jobType;
     @Enumerated(EnumType.STRING)
     private ExperienceType experienceType;
     private String category;
@@ -30,7 +31,7 @@ public class Job {
     @ManyToOne
     private Company company;
 
-    public Job(String title, LocalDate date, String country, String  jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {
+    public Job(String title, LocalDate date, String country, JobType  jobType, ExperienceType experienceType, String category, String description, int salary, String city, Company company) {
         this.title = title;
         this.date = date;
         this.country = country;
@@ -43,10 +44,4 @@ public class Job {
         this.company = company;
     }
 
-    public Job(String country, String  jobType, ExperienceType experienceType, String category) {
-        this.country = country;
-        this.jobType = jobType;
-        this.experienceType = experienceType;
-        this.category = category;
-    }
 }
