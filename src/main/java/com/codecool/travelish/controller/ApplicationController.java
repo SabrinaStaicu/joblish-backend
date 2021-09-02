@@ -49,4 +49,9 @@ public class ApplicationController {
     public ResponseEntity<Boolean> userHasAlreadyApplied(@PathVariable Long userId, @PathVariable String jobTitle, @PathVariable String companyName) {
         return ResponseEntity.ok(applicationService.appUserHasApplied(userId, jobTitle, companyName));
     }
+
+    @GetMapping("/filter-by-status/{userId}/{status}")
+    public ResponseEntity<List<Application>> filterByStatus(@PathVariable Long userId, @PathVariable String status) {
+        return ResponseEntity.ok(applicationService.filterByStatus(userId, status));
+    }
 }
