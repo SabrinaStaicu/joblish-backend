@@ -70,7 +70,7 @@ public class JobService {
         for (String jobtype : jobType) {
             if (!jobtype.equals("undefined")) {
 //                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
-                filteredJobs.addAll(copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList()));
+                filteredJobs.addAll(copy.stream().filter(job -> job.getJobType().toString().equals(jobtype)).collect(Collectors.toList()));
             }
         }
 

@@ -1,9 +1,9 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.codecool.travelish.repository.ApplicationRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +20,10 @@ public class ApplicationService {
         this.applicationRepository = applicationRepository;
         this.appUserService = appUserService;
         this.jobService = jobService;
+    }
+
+    public List<Application> findAll() {
+        return applicationRepository.findAll();
     }
 
     public List<Application> getAllByUserId(Long id) {
@@ -46,5 +50,12 @@ public class ApplicationService {
 
     public Boolean appUserHasApplied(Long userId, String jobTitle, String companyName) {
         return getAllByUserId(userId).stream().anyMatch(application -> application.getJob().getTitle().equals(jobTitle) && application.getJob().getCompany().getName().equals(companyName));
+    }
+
+    public List<Application> filterByStatus(long userId, String status) {
+        if (status.equals("Any_status")) {
+            return getAllByUserId(userId);
+        }
+        return findAll().stream().filter(application -> application.getStatus().toString().equals(status) && application.getAppUser().getId() == userId).collect(Collectors.toList());
     }
 }
