@@ -1,7 +1,9 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.repository.AppUserRepository;
+import com.codecool.travelish.repository.JobPreferencesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,12 @@ import java.util.List;
 public class AppUserService {
 
     private final AppUserRepository appUserRepository;
+    private final JobPreferencesRepository jobPreferencesRepository;
 
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository) {
+    public AppUserService(AppUserRepository appUserRepository, JobPreferencesRepository jobPreferencesRepository) {
         this.appUserRepository = appUserRepository;
+        this.jobPreferencesRepository = jobPreferencesRepository;
     }
 
     public AppUser findById(Long id) {
@@ -25,6 +29,13 @@ public class AppUserService {
 
     public void save(AppUser appUser) {
         appUserRepository.save(appUser);
+    }
+
+    public void updateJobPreferences(Long id, JobPreferences jobPreferences) {
+        AppUser appUser = findById(id);
+//        appUser.setJobPreferences(jobPreferences);
+        System.out.println(jobPreferences.isOpenToWork());
+        jobPreferencesRepository.updateJobsPreferences(jobPreferences.isOpenToWork(), 4L);
     }
 
     public void update(Long id, AppUser updatedUser) {
@@ -38,3 +49,6 @@ public class AppUserService {
         save(appUser);
     }
 }
+
+
+

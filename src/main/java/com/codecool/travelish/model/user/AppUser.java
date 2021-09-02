@@ -45,7 +45,10 @@ public class AppUser {
     @ElementCollection
     private List<String> skills = new ArrayList<>();
 
-    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, boolean lookingForJob, List<String> skills) {
+    @OneToOne(cascade = CascadeType.ALL)
+    private JobPreferences jobPreferences;
+
+    public AppUser(String firstName, String lastName, String city, String experience, String phone, String avatar, String email, String password, JobPreferences jobPreferences, List<String> skills) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -54,7 +57,7 @@ public class AppUser {
         this.picture = avatar;
         this.email = email;
         this.password = password;
-        this.lookingForJob = lookingForJob;
+        this.jobPreferences = jobPreferences;
         this.skills = skills;
     }
 

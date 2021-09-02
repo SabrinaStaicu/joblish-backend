@@ -1,6 +1,7 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +36,12 @@ public class AppUserController {
         appUserService.update(id, appUser);
         return ResponseEntity.ok("User has been updated.");
     }
+
+    @PutMapping ("/update-job-preferences/{id}")
+    public ResponseEntity<String> updateJobPreferences(@RequestBody JobPreferences jobPreferences, @PathVariable Long id) {
+        appUserService.updateJobPreferences(id, jobPreferences);
+        return ResponseEntity.ok("User has been updated.");
+    }
+
+
 }
