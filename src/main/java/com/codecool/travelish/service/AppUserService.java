@@ -26,4 +26,15 @@ public class AppUserService {
     public void save(AppUser appUser) {
         appUserRepository.save(appUser);
     }
+
+    public void update(Long id, AppUser updatedUser) {
+        AppUser appUser = findById(id);
+        appUser.setFirstName(updatedUser.getFirstName());
+        appUser.setLastName(updatedUser.getLastName());
+        appUser.setEmail(updatedUser.getEmail());
+        appUser.setCity(updatedUser.getCity());
+        appUser.setExperience(updatedUser.getExperience());
+        appUser.setPhone(updatedUser.getPhone());
+        save(appUser);
+    }
 }

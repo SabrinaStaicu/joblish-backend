@@ -1,14 +1,11 @@
 package com.codecool.travelish.controller;
 
-import com.codecool.travelish.model.application.Application;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @CrossOrigin("*")
@@ -31,5 +28,11 @@ public class AppUserController {
     public ResponseEntity<String> addUser(@RequestBody AppUser appUser){
         appUserService.save(appUser);
         return ResponseEntity.ok("User added");
+    }
+
+    @PutMapping("/update-user/{id}")
+    public ResponseEntity<String> update(@RequestBody AppUser appUser, @PathVariable Long id) {
+        appUserService.update(id, appUser);
+        return ResponseEntity.ok("User has been updated.");
     }
 }
