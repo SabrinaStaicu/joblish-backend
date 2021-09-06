@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -30,6 +31,8 @@ public class AppUser {
     private String experience;
     private String phone;
     private String picture;
+    @Enumerated(EnumType.STRING)
+    private AppUserRole role;
     @NotBlank
     @Size(max = 50)
     @Email

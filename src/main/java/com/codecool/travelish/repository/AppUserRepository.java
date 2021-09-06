@@ -11,4 +11,6 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 //    @Modifying
 //    @Query("update app u set u.firstname = ?1, u.lastname = ?2 where u.id = ?3")
 //    void setUserInfoById(String firstname, String lastname, Integer userId);
+
+    AppUser findByEmail(String email);
 }
