@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@CrossOrigin("*")
 @RequestMapping("/companies")
 public class CompanyController {
 
@@ -23,6 +22,7 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @CrossOrigin()
     @GetMapping("/all")
     public ResponseEntity<List<Company>> getAll() {
         return ResponseEntity.ok(companyService.findAll());

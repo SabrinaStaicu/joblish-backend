@@ -16,9 +16,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class AppUserService implements UserDetailsService {
+public class AppUserService {
 
     private final AppUserRepository appUserRepository;
     private final JobPreferencesRepository jobPreferencesRepository;
@@ -29,17 +30,6 @@ public class AppUserService implements UserDetailsService {
         this.appUserRepository = appUserRepository;
         this.jobPreferencesRepository = jobPreferencesRepository;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        AppUser appUser = appUserRepository.findByEmail(email);
-        if(appUser == null) {
-            throw new UsernameNotFoundException("User not found!");
-        }
-        Collection<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(appUser.getRole().name()));
-        System.out.println("YES");
-        return new User(appUser.getEmail(), appUser.getPassword(),authorities);
     }
 
     public AppUser findById(Long id) {

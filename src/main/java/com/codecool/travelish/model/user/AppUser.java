@@ -32,7 +32,8 @@ public class AppUser {
     private String phone;
     private String picture;
     @Enumerated(EnumType.STRING)
-    private AppUserRole role;
+    @ElementCollection
+    private Set<AppUserRole> roles;
     @NotBlank
     @Size(max = 50)
     @Email
