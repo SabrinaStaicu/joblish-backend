@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private AppUserService appUserService;
+    private final AppUserService appUserService;
 
     @Autowired
     public CustomUserDetailsService(AppUserService appUserService) {

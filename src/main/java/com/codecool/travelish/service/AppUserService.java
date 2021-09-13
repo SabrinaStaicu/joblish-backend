@@ -37,7 +37,7 @@ public class AppUserService {
 
     public void save(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        appUser.setRoles(Set.of(AppUserRole.ADMIN));
+//        appUser.setRoles(Set.of(AppUserRole.USER));
         appUserRepository.save(appUser);
     }
 
@@ -68,6 +68,9 @@ public class AppUserService {
        return appUserRepository.findAll();
     }
 
+    public Boolean existsByEmail(String email) {
+        return appUserRepository.existsByEmail(email);
+    }
 
 }
 

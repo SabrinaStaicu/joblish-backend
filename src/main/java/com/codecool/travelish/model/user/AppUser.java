@@ -22,18 +22,26 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+//    @NotBlank
+//    @Size(max = 25)
+//    private String username;
     @NotBlank
-    @Size(max = 25)
-    private String username;
+    @Size(min = 3, max = 25)
     private String firstName;
+    @NotBlank
+    @Size(min = 3, max = 25)
     private String lastName;
+    @NotBlank
+    @Size(min = 3, max = 25)
     private String city;
     private String experience;
+    @NotBlank
+    @Size(min = 3, max = 35)
     private String phone;
     private String picture;
     @Enumerated(EnumType.STRING)
     @ElementCollection
-    private Set<AppUserRole> roles;
+    private Set<AppUserRole> roles = Set.of(AppUserRole.USER);
     @NotBlank
     @Size(max = 50)
     @Email

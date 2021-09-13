@@ -15,4 +15,5 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 //    void setUserInfoById(String firstname, String lastname, Integer userId);
 
     Optional<AppUser> findByEmail(String email);
+    Boolean existsByEmail(String email);
 }
