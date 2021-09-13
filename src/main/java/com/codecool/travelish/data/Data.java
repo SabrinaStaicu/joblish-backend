@@ -7,10 +7,8 @@ import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.job.JobType;
 import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.model.user.AppUserRole;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.repository.JobsRepository;
-import com.codecool.travelish.repository.AppUserRepository;
 import com.codecool.travelish.service.AppUserService;
 import com.codecool.travelish.service.ApplicationService;
 import com.codecool.travelish.service.CompanyService;
@@ -20,10 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class Data implements CommandLineRunner {
