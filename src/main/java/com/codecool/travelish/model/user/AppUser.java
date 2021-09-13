@@ -21,9 +21,6 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-//    @NotBlank
-//    @Size(max = 25)
-//    private String username;
     @NotBlank
     @Size(min = 3, max = 25)
     private String firstName;
