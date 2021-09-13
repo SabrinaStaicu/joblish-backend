@@ -6,9 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 //    @Modifying
 //    @Query("update app u set u.firstname = ?1, u.lastname = ?2 where u.id = ?3")
 //    void setUserInfoById(String firstname, String lastname, Integer userId);
+
+    Optional<AppUser> findByEmail(String email);
+    Boolean existsByEmail(String email);
 }

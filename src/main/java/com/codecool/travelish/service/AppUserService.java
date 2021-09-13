@@ -1,25 +1,33 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.AppUserRole;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.repository.AppUserRepository;
 import com.codecool.travelish.repository.JobPreferencesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AppUserService {
 
     private final AppUserRepository appUserRepository;
     private final JobPreferencesRepository jobPreferencesRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository, JobPreferencesRepository jobPreferencesRepository) {
+    public AppUserService(AppUserRepository appUserRepository, JobPreferencesRepository jobPreferencesRepository, PasswordEncoder passwordEncoder) {
         this.appUserRepository = appUserRepository;
         this.jobPreferencesRepository = jobPreferencesRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public AppUser findById(Long id) {
@@ -28,6 +36,8 @@ public class AppUserService {
     }
 
     public void save(AppUser appUser) {
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+//        appUser.setRoles(Set.of(AppUserRole.USER));
         appUserRepository.save(appUser);
     }
 
@@ -48,6 +58,20 @@ public class AppUserService {
         appUser.setPhone(updatedUser.getPhone());
         save(appUser);
     }
+
+    public AppUser findByEmail(String email) {
+        return appUserRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Could not find user with email: " + email));
+    }
+
+    public List<AppUser> getUsers() {
+       return appUserRepository.findAll();
+    }
+
+    public Boolean existsByEmail(String email) {
+        return appUserRepository.existsByEmail(email);
+    }
+
 }
 
 
