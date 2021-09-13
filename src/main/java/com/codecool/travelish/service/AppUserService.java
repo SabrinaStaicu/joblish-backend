@@ -59,6 +59,11 @@ public class AppUserService {
         save(appUser);
     }
 
+    public AppUser findByEmail(String email) {
+        return appUserRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Could not find user with email: " + email));
+    }
+
     public List<AppUser> getUsers() {
        return appUserRepository.findAll();
     }

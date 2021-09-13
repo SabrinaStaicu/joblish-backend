@@ -1,4 +1,4 @@
-package com.codecool.travelish.security.fillter;
+package com.codecool.travelish.security;
 
 import com.codecool.travelish.security.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;

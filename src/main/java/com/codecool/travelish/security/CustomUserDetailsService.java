@@ -2,6 +2,8 @@ package com.codecool.travelish.security;
 
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.AppUserRepository;
+import com.codecool.travelish.service.AppUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,10 +21,11 @@ import java.util.stream.Collectors;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private AppUserRepository users;
+    private AppUserService appUserService;
 
-    public CustomUserDetailsService(AppUserRepository users) {
-        this.users = users;
+    @Autowired
+    public CustomUserDetailsService(AppUserService appUserService) {
+        this.appUserService = appUserService;
     }
 
     /**
@@ -30,8 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = users.findByEmail(username)
-            .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
+        AppUser user = appUserService.findByEmail(username);
 
         return new User(user.getEmail(), user.getPassword(),
                 user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList()));

@@ -35,7 +35,7 @@ public class AuthController {
         this.jwtTokenService = jwtTokenService;
     }
 
-    @PostMapping()
+    @PostMapping("/sign-in")
     public ResponseEntity<?> signin(@RequestBody LoginCredentials data) {
         try {
             String username = data.getEmail();
