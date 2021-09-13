@@ -25,4 +25,8 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
+    public Boolean existsByEmail(String email) {
+        return companyRepository.existsByEmail(email);
+    }
+
 }

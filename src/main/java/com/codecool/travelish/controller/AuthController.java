@@ -2,9 +2,11 @@ package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.authentication.LoginRequestDto;
 import com.codecool.travelish.model.authentication.LoginResponseDto;
+import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.security.JwtTokenService;
 import com.codecool.travelish.service.AppUserService;
+import com.codecool.travelish.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,19 +34,20 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenService jwtTokenService;
     private final AppUserService appUserService;
+    private final CompanyService companyService;
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService, AppUserService appUserService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService, AppUserService appUserService, CompanyService companyService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenService = jwtTokenService;
         this.appUserService = appUserService;
+        this.companyService = companyService;
     }
 
     @PostMapping("/sign-in")
     public ResponseEntity<?> signIn(@RequestBody LoginRequestDto data) {
         try {
             String username = data.getEmail();
-            // authenticationManager.authenticate calls loadUserByUsername in CustomUserDetailsService
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, data.getPassword());
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
@@ -63,12 +66,22 @@ public class AuthController {
     }
 
     @PostMapping("/register-user")
-    public ResponseEntity<?> register(@RequestBody @Valid AppUser appUser) {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid AppUser appUser) {
         if (appUserService.existsByEmail(appUser.getEmail())) {
             return ResponseEntity.badRequest().body("An account with this email already exists.");
         }
         // # Todo create app user object
         appUserService.save(appUser);
         return ResponseEntity.ok("User has been registered successfully.");
+    }
+
+    @PostMapping("/register-company")
+    public ResponseEntity<?> registerCompany(@RequestBody @Valid Company company) {
+        if (companyService.existsByEmail(company.getEmail())) {
+            return ResponseEntity.badRequest().body("An account with this email already exists.");
+        }
+        // # Todo create app user object
+        companyService.save(company);
+        return ResponseEntity.ok("Company has been registered successfully.");
     }
 }

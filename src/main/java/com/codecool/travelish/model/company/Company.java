@@ -29,6 +29,7 @@ public class Company {
     private String password;
     private String logo;
     private String description;
+    @NotBlank
     private String category;
 
     public Company(String name, String email, String password, String logo, String description, String category) {
