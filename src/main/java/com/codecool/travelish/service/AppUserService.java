@@ -1,6 +1,7 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.AppUserRole;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.repository.AppUserRepository;
 import com.codecool.travelish.repository.JobPreferencesRepository;
@@ -13,10 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AppUserService {
@@ -39,6 +37,7 @@ public class AppUserService {
 
     public void save(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        appUser.setRoles(Set.of(AppUserRole.ADMIN));
         appUserRepository.save(appUser);
     }
 
