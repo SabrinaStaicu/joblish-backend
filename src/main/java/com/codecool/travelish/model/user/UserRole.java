@@ -1,6 +1,6 @@
 package com.codecool.travelish.model.user;
 
-public enum AppUserRole {
+public enum UserRole {
     USER,
     ADMIN
 }

@@ -1,6 +1,7 @@
 package com.codecool.travelish.controller;
 
-import com.codecool.travelish.model.authentication.LoginCredentials;
+import com.codecool.travelish.model.authentication.LoginRequestDto;
+import com.codecool.travelish.model.authentication.LoginResponseDto;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.security.JwtTokenService;
 import com.codecool.travelish.service.AppUserService;
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<?> signIn(@RequestBody LoginCredentials data) {
+    public ResponseEntity<?> signIn(@RequestBody LoginRequestDto data) {
         try {
             String username = data.getEmail();
             // authenticationManager.authenticate calls loadUserByUsername in CustomUserDetailsService
@@ -54,11 +55,8 @@ public class AuthController {
 
             String token = jwtTokenService.createToken(username, roles);
 
-            Map<Object, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("roles", roles);
-            model.put("token", token);
-            return ResponseEntity.ok(model);
+            LoginResponseDto loginResponseDto = new LoginResponseDto(appUserService.findByEmail(username).getId(), roles, token, username);
+            return ResponseEntity.ok(loginResponseDto);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }

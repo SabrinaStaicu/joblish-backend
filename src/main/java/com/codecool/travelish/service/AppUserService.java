@@ -1,16 +1,10 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.model.user.AppUserRole;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.repository.AppUserRepository;
 import com.codecool.travelish.repository.JobPreferencesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
