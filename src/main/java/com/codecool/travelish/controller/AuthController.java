@@ -1,8 +1,7 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.authentication.LoginCredentials;
-import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.security.JwtTokenServices;
+import com.codecool.travelish.security.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,21 +22,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@CrossOrigin("*")
+@RequestMapping("/auth")
+public class AuthController {
     private final AuthenticationManager authenticationManager;
 
-    private final JwtTokenServices jwtTokenServices;
+    private final JwtTokenService jwtTokenService;
 
     @Autowired
-    public LoginController(AuthenticationManager authenticationManager, JwtTokenServices jwtTokenServices) {
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenService jwtTokenService) {
         this.authenticationManager = authenticationManager;
-        this.jwtTokenServices = jwtTokenServices;
+        this.jwtTokenService = jwtTokenService;
     }
 
-    @CrossOrigin()
     @PostMapping()
-    public ResponseEntity signin(@RequestBody LoginCredentials data) {
+    public ResponseEntity<?> signin(@RequestBody LoginCredentials data) {
         try {
             String username = data.getEmail();
             System.out.println(username);
@@ -49,7 +48,7 @@ public class LoginController {
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
 
-            String token = jwtTokenServices.createToken(username, roles);
+            String token = jwtTokenService.createToken(username, roles);
 
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);

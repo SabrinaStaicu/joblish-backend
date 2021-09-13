@@ -18,7 +18,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class JwtTokenServices {
+public class JwtTokenService {
 
     @Value("${security.jwt.token.secret-key:secret}")
     private String secretKey = "secret";
