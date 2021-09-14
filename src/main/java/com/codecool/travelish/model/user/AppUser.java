@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -46,6 +47,10 @@ public class AppUser {
     @Size(min = 5, max = 30)
     private String password;
     private Boolean lookingForJob;
+    @Transient
+    private LocalDate date;
+    @Transient
+    private String notes;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Job> favoriteJobs;
@@ -67,6 +72,14 @@ public class AppUser {
         this.password = password;
         this.jobPreferences = jobPreferences;
         this.skills = skills;
+    }
+
+    public AppUser(String firstName, String lastName, String picture, LocalDate date, String notes) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.picture = picture;
+        this.date = date;
+        this.notes = notes;
     }
 
     public void addToFavorites(Job job) {

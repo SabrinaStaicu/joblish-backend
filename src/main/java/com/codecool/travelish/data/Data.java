@@ -55,6 +55,7 @@ public class Data implements CommandLineRunner {
 
 
         Application application = new Application(ApplicationStatus.Accepted, job, appUser);
+        application.setDate(LocalDate.now());
         applicationService.save(application);
 
         companyService.save(company1);

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity(name = "application")
 @Data
@@ -16,6 +17,7 @@ public class Application {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+    private LocalDate date;
     private String notes;
     @ManyToOne
     private Job job;
