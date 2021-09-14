@@ -47,8 +47,9 @@ public class AuthController {
     @PostMapping("/sign-in")
     public ResponseEntity<?> signIn(@RequestBody LoginRequestDto data) {
         try {
-            String username = data.getEmail();
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, data.getPassword());
+            String email = data.getEmail();
+
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, data.getPassword());
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
 
             List<String> roles = authentication.getAuthorities()
@@ -56,9 +57,10 @@ public class AuthController {
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
 
-            String token = jwtTokenService.createToken(username, roles);
+            String token = jwtTokenService.createToken(email, roles);
 
-            LoginResponseDto loginResponseDto = new LoginResponseDto(appUserService.findByEmail(username).getId(), roles, token, username);
+//            LoginResponseDto loginResponseDto = new LoginResponseDto(appUserService.findByEmail(username).getId(), roles, token, username);
+            LoginResponseDto loginResponseDto = getAccountType(email, token, roles);
             return ResponseEntity.ok(loginResponseDto);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
@@ -83,5 +85,15 @@ public class AuthController {
         // # Todo create app user object
         companyService.save(company);
         return ResponseEntity.ok("Company has been registered successfully.");
+    }
+
+    public LoginResponseDto getAccountType(String email, String token, List<String> roles) {
+        LoginResponseDto loginResponseDto;
+        if (appUserService.existsByEmail(email)) {
+            loginResponseDto = new LoginResponseDto(appUserService.findByEmail(email).getId(), roles, token, email);
+        } else {
+            loginResponseDto = new LoginResponseDto(companyService.findByEmail(email).getId(), roles, token, email);
+        }
+        return loginResponseDto;
     }
 }

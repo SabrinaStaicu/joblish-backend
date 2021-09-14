@@ -3,6 +3,7 @@ package com.codecool.travelish.service;
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,13 +12,16 @@ import java.util.List;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder) {
         this.companyRepository = companyRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void save(Company company) {
+        company.setPassword(passwordEncoder.encode(company.getPassword()));
         companyRepository.save(company);
     }
 
@@ -29,4 +33,7 @@ public class CompanyService {
         return companyRepository.existsByEmail(email);
     }
 
+    public Company findByEmail(String email) {
+        return companyRepository.findByEmail(email);
+    }
 }

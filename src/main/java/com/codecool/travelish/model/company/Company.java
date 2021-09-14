@@ -1,14 +1,14 @@
 package com.codecool.travelish.model.company;
 
+import com.codecool.travelish.model.user.UserRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Data
@@ -31,6 +31,10 @@ public class Company {
     private String description;
     @NotBlank
     private String category;
+
+//    @Enumerated(EnumType.STRING)
+    @ElementCollection
+    private Set<UserRole> roles = Set.of(UserRole.COMPANY);
 
     public Company(String name, String email, String password, String logo, String description, String category) {
         this.name = name;
