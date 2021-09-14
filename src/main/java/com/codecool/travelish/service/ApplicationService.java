@@ -5,6 +5,7 @@ import com.codecool.travelish.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +38,7 @@ public class ApplicationService {
     public void addApplication(Application application, Long userId, Long jobId) {
         application.setAppUser(appUserService.findById(userId));
         application.setJob(jobService.findById(jobId));
+        application.setDate(LocalDate.now());
         save(application);
     }
 
