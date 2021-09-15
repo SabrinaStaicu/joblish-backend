@@ -1,6 +1,7 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.company.Company;
+import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,4 +35,12 @@ public class CompanyController {
         companyService.changePassword(companyId, password);
         return ResponseEntity.ok("Password has been changed.");
     }
+//    @CrossOrigin()
+//    @GetMapping("/userby")
+//    public ResponseEntity<List<AppUser>> usersBy() {
+//        System.out.println(companyService.findAllUsersByCompany(1L));
+//        return ResponseEntity.ok(companyService.findAllUsersByCompany(1L));
+//    }
+
+
 }

@@ -10,5 +10,4 @@ import java.util.List;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     List<Application> findAllByAppUserId(Long id);
     List<Application> findAllByJobId(Long id);
-
 }
