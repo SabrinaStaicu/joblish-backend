@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/companies")
 @CrossOrigin("*")
-@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
+@PreAuthorize("hasRole('USER') or hasRole('COMPANY')")
 public class CompanyController {
 
     private final CompanyService companyService;

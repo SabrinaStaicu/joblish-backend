@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/applications")
-@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
+@PreAuthorize("hasRole('USER') or hasRole('COMPANY')")
 public class ApplicationController {
 
     private final ApplicationService applicationService;
@@ -29,7 +29,7 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.getAllByUserId(id));
     }
 
-    @PreAuthorize("hasRole('CUSTOMER')")
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/add/{userId}/{jobId}")
     public ResponseEntity<String> addApplication(@RequestBody Application application,
                                                  @PathVariable Long userId,
@@ -38,7 +38,7 @@ public class ApplicationController {
         return ResponseEntity.ok("Job added.");
     }
 
-    @PreAuthorize("hasRole('CUSTOMER')")
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> removeApplication(@PathVariable Long id) {
         applicationService.removeApplication(id);
@@ -65,21 +65,21 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.findAllCurrentApplicationForCompany(companyId));
     }
 
-    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('COMPANY')")
     @GetMapping("/approve-application/{id}")
     public ResponseEntity<String> approveApplication(@PathVariable Long id) {
         applicationService.approveApplication(id);
         return ResponseEntity.ok("Application with id " + id + " has been approve and other have been denied.");
     }
 
-    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('COMPANY')")
     @GetMapping("/reject-application/{id}")
     public ResponseEntity<String> rejectApplication(@PathVariable Long id) {
         applicationService.rejectApplication(id);
         return ResponseEntity.ok("Application with id " + id + " has been rejected.");
     }
 
-    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('COMPANY')")
     @GetMapping("/company-unique-applications/{companyId}")
     public ResponseEntity<List<AppUser>> getAllUniqueApplicantsForCompany(@PathVariable Long companyId) {
         return ResponseEntity.ok(applicationService.getAllCompanyApplicants(companyId));

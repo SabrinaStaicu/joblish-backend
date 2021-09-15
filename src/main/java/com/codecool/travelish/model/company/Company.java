@@ -34,7 +34,7 @@ public class Company {
     private String category;
 
     @ElementCollection
-    private Set<UserRole> roles = Set.of(UserRole.COMPANY);
+    private Set<UserRole> roles = Set.of(UserRole.ROLE_COMPANY);
 
     public Company(String name, String email, String password, String logo, String description, String category) {
         this.name = name;

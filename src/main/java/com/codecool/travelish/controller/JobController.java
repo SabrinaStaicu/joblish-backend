@@ -15,7 +15,7 @@ import java.util.Set;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/jobs")
-@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
+@PreAuthorize("hasRole('USER') or hasRole('COMPANY')")
 public class JobController {
     private final JobService jobService;
 
@@ -53,12 +53,14 @@ public class JobController {
         return ResponseEntity.ok(jobService.findByCompanyId(companyId));
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/add-favorites/{userId}/{jobId}")
     public ResponseEntity<String> addToFavorites(@PathVariable Long userId, @PathVariable Long jobId) {
         jobService.addToJobToFavorites(userId, jobId);
         return ResponseEntity.ok("Job has been added to favorites.");
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/remove-favorites/{userId}/{jobId}")
     public ResponseEntity<String> removeFromFavorites(@PathVariable Long userId, @PathVariable Long jobId) {
         jobService.removeJobFromFavorites(userId, jobId);
@@ -70,11 +72,13 @@ public class JobController {
         return ResponseEntity.ok(jobService.jobIsSaved(userId, jobId));
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/get-favorite-jobs/{userId}")
     public ResponseEntity<Set<Job>> getAllSavedJobs(@PathVariable Long userId) {
         return ResponseEntity.ok(jobService.findAllSavedJobs(userId));
     }
 
+    @PreAuthorize("hasRole('COMPANY')")
     @PutMapping ("/update-job/{id}")
     public ResponseEntity<String> updateJobPreferences(@RequestBody Job job, @PathVariable Long id) {
         jobService.updateJobDetails(job, id);
