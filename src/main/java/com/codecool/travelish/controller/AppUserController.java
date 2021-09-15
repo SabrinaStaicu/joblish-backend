@@ -57,10 +57,4 @@ public class AppUserController {
     public ResponseEntity<List<AppUser>> searchUsers(@PathVariable String searchInput, @PathVariable Boolean openToWork) {
         return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
     }
-
-//    @GetMapping("/applicants/{companyId}")
-//    public ResponseEntity<List<AppUser>> getApplicants(@PathVariable Long companyId) {
-//        return ResponseEntity.ok(companyService.findAllUsersByCompany(companyId));
-//    }
-
 }

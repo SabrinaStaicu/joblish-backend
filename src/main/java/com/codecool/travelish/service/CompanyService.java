@@ -25,24 +25,6 @@ public class CompanyService {
         companyRepository.save(company);
     }
 
-//    public List<Application> findAllApplications() {
-//        return applicationRepository.findAll();
-//    }
-//
-//    public List<Job> findAllAppliedJobs(Long id) {
-//        List<Job> jobs = new ArrayList<>();
-//        findAllApplications().stream().forEach(application -> {
-//            jobs.add(jobsRepository.findById(application.getJob().getId()).orElseThrow(() -> new IllegalArgumentException("Could not find jobs! ")));
-//        });
-//
-//        return jobs.stream().filter(job -> job.getCompany().getId().equals(id)).collect(Collectors.toList());
-//    }
-
-//    public List<AppUser> findAllUsersByCompany(long id) {
-//        Pageable pageable =  PageRequest.of(0,5);
-//        return  appUserRepository.selectUsersByCompany(id, pageable);
-//    }
-
     public List<Company> findAll() {
         return companyRepository.findAll();
     }

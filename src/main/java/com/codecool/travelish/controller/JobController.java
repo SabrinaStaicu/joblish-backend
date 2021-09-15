@@ -15,7 +15,7 @@ import java.util.Set;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/jobs")
-//@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
+@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
 public class JobController {
     private final JobService jobService;
 
