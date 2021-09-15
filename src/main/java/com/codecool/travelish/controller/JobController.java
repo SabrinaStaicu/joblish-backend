@@ -1,6 +1,7 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.job.Job;
+import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -79,5 +81,11 @@ public class JobController {
     public ResponseEntity<String> updateJobPreferences(@RequestBody Job job, @PathVariable Long id) {
         jobService.updateJobDetails(job, id);
         return ResponseEntity.ok("Job has been updated.");
+    }
+
+    @PostMapping("/add-job/{companyId}")
+    public ResponseEntity<?> registerUser(@RequestBody Job job, @PathVariable Long companyId) {
+       jobService.saveJob(job, companyId);
+        return ResponseEntity.ok("Job has been added successfully.");
     }
 }
