@@ -1,6 +1,7 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.job.Job;
+import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,5 +73,11 @@ public class JobController {
     @GetMapping("/get-favorite-jobs/{userId}")
     public ResponseEntity<Set<Job>> getAllSavedJobs(@PathVariable Long userId) {
         return ResponseEntity.ok(jobService.findAllSavedJobs(userId));
+    }
+
+    @PutMapping ("/update-job/{id}")
+    public ResponseEntity<String> updateJobPreferences(@RequestBody Job job, @PathVariable Long id) {
+        jobService.updateJobDetails(job, id);
+        return ResponseEntity.ok("Job has been updated.");
     }
 }

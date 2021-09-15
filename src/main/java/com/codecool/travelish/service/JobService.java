@@ -129,4 +129,8 @@ public class JobService {
     public Set<Job> findAllSavedJobs(Long userId) {
         return appUserService.findById(userId).getFavoriteJobs();
     }
+
+    public void updateJobDetails(Job job,  Long id) {
+        jobsRepository.updateJobDetails(job.getCategory(),job.getCity(),job.getCountry(), job.getDate(), job.getDescription(), job.getJobType(), job.getSalary(), job.getTitle(), id);
+    }
 }
