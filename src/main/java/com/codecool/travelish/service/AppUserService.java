@@ -72,6 +72,8 @@ public class AppUserService {
                 .filter(appUser -> (appUser.getFirstName() + " " + appUser.getLastName()).toLowerCase().contains(searchInput.toLowerCase()) && openToWork == appUser.getJobPreferences().isOpenToWork())
                 .collect(Collectors.toList());
     }
+
+
 }
 
 

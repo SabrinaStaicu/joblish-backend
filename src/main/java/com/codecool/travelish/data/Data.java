@@ -55,9 +55,13 @@ public class Data implements CommandLineRunner {
 
 
         Application application = new Application(ApplicationStatus.Not_seen, job, appUser, LocalDate.now());
-        Application application1 = new Application(ApplicationStatus.Not_seen, job1, appUser, LocalDate.now());
+        Application application1 = new Application(ApplicationStatus.Not_seen, job, appUser, LocalDate.now());
+        Application application2 = new Application(ApplicationStatus.Not_seen, job, appUser, LocalDate.now());
+        Application application3 = new Application(ApplicationStatus.Not_seen, job1, appUser, LocalDate.now());
         applicationService.save(application);
         applicationService.save(application1);
+        applicationService.save(application2);
+        applicationService.save(application3);
 
         companyService.save(company1);
 

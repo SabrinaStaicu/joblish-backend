@@ -2,11 +2,13 @@ package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.application.Application;
 import com.codecool.travelish.model.application.ApplicationStatus;
+import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,4 +85,21 @@ public class ApplicationService {
                     save(application);
                 });
     }
+
+    public void rejectApplication(long id) {
+        Application application = findById(id);
+        application.setStatus(ApplicationStatus.Denied);
+        save(application);
+    }
+
+    public List<AppUser> getAllCompanyApplicants(long companyId) {
+        List<AppUser> applicants = new ArrayList<>();
+        for(Application application: findAll()) {
+            if (!applicants.contains(application.getAppUser()) && application.getJob().getCompany().getId() == companyId) {
+                applicants.add(application.getAppUser());
+            }
+        }
+        return applicants;
+    }
+
 }

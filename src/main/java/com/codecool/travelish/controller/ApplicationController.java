@@ -1,10 +1,10 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +65,16 @@ public class ApplicationController {
     public ResponseEntity<String> approveApplication(@PathVariable Long id) {
         applicationService.approveApplication(id);
         return ResponseEntity.ok("Application with id " + id + " has been approve and other have been denied.");
+    }
+
+    @GetMapping("/reject-application/{id}")
+    public ResponseEntity<String> rejectApplication(@PathVariable Long id) {
+        applicationService.rejectApplication(id);
+        return ResponseEntity.ok("Application with id " + id + " has been rejected.");
+    }
+
+    @GetMapping("/company-unique-applications/{companyId}")
+    public ResponseEntity<List<AppUser>> getAllUniqueApplicantsForCompany(@PathVariable Long companyId) {
+        return ResponseEntity.ok(applicationService.getAllCompanyApplicants(companyId));
     }
 }
