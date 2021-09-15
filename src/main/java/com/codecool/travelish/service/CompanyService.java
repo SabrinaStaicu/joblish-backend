@@ -51,10 +51,10 @@ public class CompanyService {
 //        return jobs.stream().filter(job -> job.getCompany().getId().equals(id)).collect(Collectors.toList());
 //    }
 
-    public List<AppUser> findAllUsersByCompany(long id) {
-        Pageable pageable =  PageRequest.of(0,5);
-        return  appUserRepository.selectUsersByCompany(id, pageable);
-    }
+//    public List<AppUser> findAllUsersByCompany(long id) {
+//        Pageable pageable =  PageRequest.of(0,5);
+//        return  appUserRepository.selectUsersByCompany(id, pageable);
+//    }
 
     public List<Company> findAll() {
         return companyRepository.findAll();

@@ -4,6 +4,7 @@ import com.codecool.travelish.model.application.Application;
 import com.codecool.travelish.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,7 +58,12 @@ public class ApplicationController {
 
     @GetMapping("/applications-for-company/{companyId}")
     public ResponseEntity<List<Application>> getAllForCompany(@PathVariable Long companyId) {
-        System.out.println(applicationService.findAllCurrentApplicationForCompany(companyId));
         return ResponseEntity.ok(applicationService.findAllCurrentApplicationForCompany(companyId));
+    }
+
+    @GetMapping("/approve-application/{id}")
+    public ResponseEntity<String> approveApplication(@PathVariable Long id) {
+        applicationService.approveApplication(id);
+        return ResponseEntity.ok("Application with id " + id + " has been approve and other have been denied.");
     }
 }

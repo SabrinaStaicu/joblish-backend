@@ -24,6 +24,11 @@ public class ApplicationService {
         this.jobService = jobService;
     }
 
+    public Application findById(Long id) {
+        return applicationRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Could not find application with id " + id));
+    }
+
     public List<Application> findAll() {
         return applicationRepository.findAll();
     }
@@ -63,6 +68,19 @@ public class ApplicationService {
     }
 
     public List<Application> findAllCurrentApplicationForCompany(long id) {
-        return findAll().stream().filter(application -> application.getStatus() == ApplicationStatus.Not_seen && application.getJob().getCompany().getId() == id).collect(Collectors.toList());
+        List<Application> applications = findAll().stream().filter(application -> application.getStatus() == ApplicationStatus.Not_seen || application.getStatus() == ApplicationStatus.Seen && application.getJob().getCompany().getId() == id).collect(Collectors.toList());
+        applications.forEach(application -> application.setStatus(ApplicationStatus.Seen));
+        return applications;
+    }
+
+    public void approveApplication(long id) {
+        Application acceptedApplication = findById(id);
+        acceptedApplication.setStatus(ApplicationStatus.Accepted);
+        save(acceptedApplication);
+        findAll().stream().filter(application -> application.getJob().getTitle().equals(acceptedApplication.getJob().getTitle()) && application.getJob().getCompany().equals(acceptedApplication.getJob().getCompany()) && application.getId() != id)
+                .forEach(application -> {
+                    application.setStatus(ApplicationStatus.Denied);
+                    save(application);
+                });
     }
 }

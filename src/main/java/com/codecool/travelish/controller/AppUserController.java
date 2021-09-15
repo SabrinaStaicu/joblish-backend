@@ -19,12 +19,10 @@ import java.util.List;
 public class AppUserController {
 
     private final AppUserService appUserService;
-    private final CompanyService companyService;
 
     @Autowired
-    public AppUserController(AppUserService appUserService, CompanyService companyService) {
+    public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
-        this.companyService = companyService;
     }
 
     @GetMapping("/{id}")
@@ -60,9 +58,9 @@ public class AppUserController {
         return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
     }
 
-    @GetMapping("/applicants/{companyId}")
-    public ResponseEntity<List<AppUser>> getApplicants(@PathVariable Long companyId) {
-        return ResponseEntity.ok(companyService.findAllUsersByCompany(companyId));
-    }
+//    @GetMapping("/applicants/{companyId}")
+//    public ResponseEntity<List<AppUser>> getApplicants(@PathVariable Long companyId) {
+//        return ResponseEntity.ok(companyService.findAllUsersByCompany(companyId));
+//    }
 
 }
