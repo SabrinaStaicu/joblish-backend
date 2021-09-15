@@ -45,22 +45,24 @@ public class AuthController {
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<?> signIn(@RequestBody LoginRequestDto data) {
+    public ResponseEntity<?> userSignIn(@RequestBody LoginRequestDto data) {
         try {
-            String email = data.getEmail();
+            if (appUserService.existsByEmail(data.getEmail())) {
+                return ResponseEntity.ok(getResponseDto(data));
+            }
+            throw new BadCredentialsException("Invalid username/password");
+        } catch (AuthenticationException e) {
+            throw new BadCredentialsException("Invalid username/password supplied");
+        }
+    }
 
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, data.getPassword());
-            Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
-            List<String> roles = authentication.getAuthorities()
-                    .stream()
-                    .map(GrantedAuthority::getAuthority)
-                    .collect(Collectors.toList());
-
-            String token = jwtTokenService.createToken(email, roles);
-
-            LoginResponseDto loginResponseDto = getAccountType(email, token, roles);
-            return ResponseEntity.ok(loginResponseDto);
+    @PostMapping("/sign-in/company")
+    public ResponseEntity<?> companySignIn(@RequestBody LoginRequestDto data) {
+        try {
+            if (companyService.existsByEmail(data.getEmail())) {
+                return ResponseEntity.ok(getResponseDto(data));
+            }
+            throw new BadCredentialsException("Invalid username/password");
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }
@@ -71,7 +73,6 @@ public class AuthController {
         if (appUserService.existsByEmail(appUser.getEmail())) {
             return ResponseEntity.badRequest().body("An account with this email already exists.");
         }
-        // # Todo create app user object
         appUserService.save(appUser);
         return ResponseEntity.ok("User has been registered successfully.");
     }
@@ -81,7 +82,6 @@ public class AuthController {
         if (companyService.existsByEmail(company.getEmail())) {
             return ResponseEntity.badRequest().body("An account with this email already exists.");
         }
-        // # Todo create app user object
         companyService.save(company);
         return ResponseEntity.ok("Company has been registered successfully.");
     }
@@ -94,5 +94,21 @@ public class AuthController {
             loginResponseDto = new LoginResponseDto(companyService.findByEmail(email).getId(), roles, token, email);
         }
         return loginResponseDto;
+    }
+
+    public LoginResponseDto getResponseDto(LoginRequestDto data) {
+        String email = data.getEmail();
+
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, data.getPassword());
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+        List<String> roles = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+
+        String token = jwtTokenService.createToken(email, roles);
+
+        return getAccountType(email, token, roles);
     }
 }

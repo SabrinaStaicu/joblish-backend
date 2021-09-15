@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/users")
-@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
+@PreAuthorize("hasRole('USER') or hasRole('COMPANY')")
 public class AppUserController {
 
     private final AppUserService appUserService;
@@ -35,13 +35,14 @@ public class AppUserController {
         appUserService.save(appUser);
         return ResponseEntity.ok("User added");
     }
-
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/update-user/{id}")
     public ResponseEntity<String> update(@RequestBody AppUser appUser, @PathVariable Long id) {
         appUserService.update(id, appUser);
         return ResponseEntity.ok("User has been updated.");
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PutMapping ("/update-job-preferences/{id}")
     public ResponseEntity<String> updateJobPreferences(@RequestBody JobPreferences jobPreferences, @PathVariable Long id) {
         appUserService.updateJobPreferences(id, jobPreferences);
@@ -57,10 +58,4 @@ public class AppUserController {
     public ResponseEntity<List<AppUser>> searchUsers(@PathVariable String searchInput, @PathVariable Boolean openToWork) {
         return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
     }
-
-//    @GetMapping("/applicants/{companyId}")
-//    public ResponseEntity<List<AppUser>> getApplicants(@PathVariable Long companyId) {
-//        return ResponseEntity.ok(companyService.findAllUsersByCompany(companyId));
-//    }
-
 }

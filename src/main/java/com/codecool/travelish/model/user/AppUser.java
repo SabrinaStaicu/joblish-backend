@@ -38,7 +38,7 @@ public class AppUser {
     private String picture;
 //    @Enumerated(EnumType.STRING)
     @ElementCollection
-    private Set<UserRole> roles = Set.of(UserRole.USER);
+    private Set<UserRole> roles = Set.of(UserRole.ROLE_USER);
     @NotBlank
     @Size(max = 50)
     @Email
