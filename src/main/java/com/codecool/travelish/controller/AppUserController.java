@@ -5,12 +5,16 @@ import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/users")
+@PreAuthorize("hasRole('CUSTOMER') or hasRole('COMPANY')")
 public class AppUserController {
 
     private final AppUserService appUserService;
@@ -43,5 +47,13 @@ public class AppUserController {
         return ResponseEntity.ok("User has been updated.");
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<AppUser>> getAllUsers() {
+        return ResponseEntity.ok(appUserService.getUsers());
+    }
 
+    @GetMapping("/search-user/{searchInput}/{openToWork}")
+    public ResponseEntity<List<AppUser>> searchUsers(@PathVariable String searchInput, @PathVariable Boolean openToWork) {
+        return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
+    }
 }

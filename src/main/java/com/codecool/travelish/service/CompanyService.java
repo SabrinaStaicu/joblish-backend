@@ -36,4 +36,10 @@ public class CompanyService {
     public Company findByEmail(String email) {
         return companyRepository.findByEmail(email);
     }
+
+    public void changePassword(Long companyId, String password) {
+        Company company = companyRepository.findById(companyId).orElseThrow(() -> new IllegalArgumentException("Could not find company."));
+        company.setPassword(passwordEncoder.encode(password));
+        companyRepository.save(company);
+    }
 }

@@ -27,6 +27,7 @@ public class Company {
     @NotBlank
     @Size(min = 5)
     private String password;
+    @Column(columnDefinition = "TEXT")
     private String logo;
     private String description;
     @NotBlank

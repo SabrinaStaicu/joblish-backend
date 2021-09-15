@@ -59,7 +59,6 @@ public class AuthController {
 
             String token = jwtTokenService.createToken(email, roles);
 
-//            LoginResponseDto loginResponseDto = new LoginResponseDto(appUserService.findByEmail(username).getId(), roles, token, username);
             LoginResponseDto loginResponseDto = getAccountType(email, token, roles);
             return ResponseEntity.ok(loginResponseDto);
         } catch (AuthenticationException e) {
