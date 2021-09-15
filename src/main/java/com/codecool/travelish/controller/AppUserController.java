@@ -3,6 +3,7 @@ package com.codecool.travelish.controller;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.AppUserService;
+import com.codecool.travelish.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,10 +19,12 @@ import java.util.List;
 public class AppUserController {
 
     private final AppUserService appUserService;
+    private final CompanyService companyService;
 
     @Autowired
-    public AppUserController(AppUserService appUserService) {
+    public AppUserController(AppUserService appUserService, CompanyService companyService) {
         this.appUserService = appUserService;
+        this.companyService = companyService;
     }
 
     @GetMapping("/{id}")
@@ -56,4 +59,10 @@ public class AppUserController {
     public ResponseEntity<List<AppUser>> searchUsers(@PathVariable String searchInput, @PathVariable Boolean openToWork) {
         return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
     }
+
+    @GetMapping("/applicants/{companyId}")
+    public ResponseEntity<List<AppUser>> getApplicants(@PathVariable Long companyId) {
+        return ResponseEntity.ok(companyService.findAllUsersByCompany(companyId));
+    }
+
 }

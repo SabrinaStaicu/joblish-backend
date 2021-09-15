@@ -35,7 +35,7 @@ public class CompanyController {
         companyService.changePassword(companyId, password);
         return ResponseEntity.ok("Password has been changed.");
     }
-//    @CrossOrigin()
+
 //    @GetMapping("/userby")
 //    public ResponseEntity<List<AppUser>> usersBy() {
 //        System.out.println(companyService.findAllUsersByCompany(1L));
