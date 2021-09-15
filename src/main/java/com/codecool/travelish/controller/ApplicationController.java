@@ -54,4 +54,10 @@ public class ApplicationController {
     public ResponseEntity<List<Application>> filterByStatus(@PathVariable Long userId, @PathVariable String status) {
         return ResponseEntity.ok(applicationService.filterByStatus(userId, status));
     }
+
+    @GetMapping("/applications-for-company/{companyId}")
+    public ResponseEntity<List<Application>> getAllForCompany(@PathVariable Long companyId) {
+        System.out.println(applicationService.findAllCurrentApplicationForCompany(companyId));
+        return ResponseEntity.ok(applicationService.findAllCurrentApplicationForCompany(companyId));
+    }
 }

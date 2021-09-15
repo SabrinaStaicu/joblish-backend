@@ -1,6 +1,7 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.model.application.ApplicationStatus;
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
@@ -21,17 +22,15 @@ import java.util.stream.Collectors;
 @Service
 public class CompanyService {
 
-    private final JobsRepository jobsRepository;
     private final AppUserRepository appUserRepository;
     private final CompanyRepository companyRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder, AppUserRepository appUserRepository, JobsRepository jobsRepository) {
+    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder, AppUserRepository appUserRepository) {
         this.companyRepository = companyRepository;
         this.passwordEncoder = passwordEncoder;
         this.appUserRepository = appUserRepository;
-        this.jobsRepository = jobsRepository;
     }
 
     public void save(Company company) {
@@ -52,11 +51,10 @@ public class CompanyService {
 //        return jobs.stream().filter(job -> job.getCompany().getId().equals(id)).collect(Collectors.toList());
 //    }
 
-    public List<AppUser> findAllUsersByCompany(Long id) {
+    public List<AppUser> findAllUsersByCompany(long id) {
         Pageable pageable =  PageRequest.of(0,5);
         return  appUserRepository.selectUsersByCompany(id, pageable);
     }
-
 
     public List<Company> findAll() {
         return companyRepository.findAll();

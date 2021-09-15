@@ -33,7 +33,6 @@ public class Company {
     @NotBlank
     private String category;
 
-//    @Enumerated(EnumType.STRING)
     @ElementCollection
     private Set<UserRole> roles = Set.of(UserRole.COMPANY);
 

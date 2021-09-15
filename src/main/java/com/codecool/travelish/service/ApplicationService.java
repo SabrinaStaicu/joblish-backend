@@ -1,6 +1,7 @@
 package com.codecool.travelish.service;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.model.application.ApplicationStatus;
 import com.codecool.travelish.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,9 @@ public class ApplicationService {
             return getAllByUserId(userId);
         }
         return findAll().stream().filter(application -> application.getStatus().toString().equals(status) && application.getAppUser().getId() == userId).collect(Collectors.toList());
+    }
+
+    public List<Application> findAllCurrentApplicationForCompany(long id) {
+        return findAll().stream().filter(application -> application.getStatus() == ApplicationStatus.Not_seen && application.getJob().getCompany().getId() == id).collect(Collectors.toList());
     }
 }

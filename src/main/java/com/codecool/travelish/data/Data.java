@@ -54,9 +54,10 @@ public class Data implements CommandLineRunner {
         jobsRepository.save(job1);
 
 
-        Application application = new Application(ApplicationStatus.Accepted, job, appUser);
-        application.setDate(LocalDate.now());
+        Application application = new Application(ApplicationStatus.Not_seen, job, appUser, LocalDate.now());
+        Application application1 = new Application(ApplicationStatus.Not_seen, job1, appUser, LocalDate.now());
         applicationService.save(application);
+        applicationService.save(application1);
 
         companyService.save(company1);
 
