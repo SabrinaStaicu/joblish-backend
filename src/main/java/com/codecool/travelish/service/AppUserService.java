@@ -39,7 +39,6 @@ public class AppUserService {
     public void updateJobPreferences(Long id, JobPreferences jobPreferences) {
 //        AppUser appUser = findById(id);
 //        appUser.setJobPreferences(jobPreferences);
-        System.out.println(jobPreferences.isOpenToWork());
         jobPreferencesRepository.updateJobsPreferences(jobPreferences.isOpenToWork(), 4L);
     }
 
@@ -72,8 +71,6 @@ public class AppUserService {
                 .filter(appUser -> (appUser.getFirstName() + " " + appUser.getLastName()).toLowerCase().contains(searchInput.toLowerCase()) && openToWork == appUser.getJobPreferences().isOpenToWork())
                 .collect(Collectors.toList());
     }
-
-
 }
 
 

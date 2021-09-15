@@ -42,5 +42,9 @@ public class CompanyController {
 //        return ResponseEntity.ok(companyService.findAllUsersByCompany(1L));
 //    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(companyService.findById(id));
+    }
 
 }

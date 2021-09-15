@@ -1,36 +1,23 @@
 package com.codecool.travelish.service;
 
-import com.codecool.travelish.model.application.Application;
-import com.codecool.travelish.model.application.ApplicationStatus;
 import com.codecool.travelish.model.company.Company;
-import com.codecool.travelish.model.job.Job;
-import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.repository.AppUserRepository;
-import com.codecool.travelish.repository.ApplicationRepository;
 import com.codecool.travelish.repository.CompanyRepository;
-import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CompanyService {
 
-    private final AppUserRepository appUserRepository;
     private final CompanyRepository companyRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder, AppUserRepository appUserRepository) {
+    public CompanyService(CompanyRepository companyRepository, PasswordEncoder passwordEncoder) {
         this.companyRepository = companyRepository;
         this.passwordEncoder = passwordEncoder;
-        this.appUserRepository = appUserRepository;
     }
 
     public void save(Company company) {
@@ -72,5 +59,10 @@ public class CompanyService {
         Company company = companyRepository.findById(companyId).orElseThrow(() -> new IllegalArgumentException("Could not find company."));
         company.setPassword(passwordEncoder.encode(password));
         companyRepository.save(company);
+    }
+
+    public Company findById(Long id) {
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Could not find company with id " + id));
     }
 }
