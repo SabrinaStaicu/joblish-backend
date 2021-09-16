@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -88,5 +89,12 @@ public class JobController {
     public ResponseEntity<String> deleteJob(@PathVariable Long id) {
         jobService.deleteJob(id);
         return ResponseEntity.ok("Job has been deleted.");
+    }
+
+    @PreAuthorize("hasRole('COMPANY')")
+    @PostMapping("/add-job/{companyId}")
+    public ResponseEntity<?> registerUser(@RequestBody Job job, @PathVariable Long companyId) {
+       jobService.saveJob(job, companyId);
+        return ResponseEntity.ok("Job has been added successfully.");
     }
 }

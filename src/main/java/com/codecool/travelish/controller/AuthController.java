@@ -4,6 +4,7 @@ import com.codecool.travelish.model.authentication.LoginRequestDto;
 import com.codecool.travelish.model.authentication.LoginResponseDto;
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.UserRole;
 import com.codecool.travelish.security.JwtTokenService;
 import com.codecool.travelish.service.AppUserService;
 import com.codecool.travelish.service.CompanyService;
@@ -59,7 +60,7 @@ public class AuthController {
     @PostMapping("/sign-in/company")
     public ResponseEntity<?> companySignIn(@RequestBody LoginRequestDto data) {
         try {
-            if (companyService.existsByEmail(data.getEmail())) {
+            if (companyService.existsByEmail(data.getEmail()) && companyService.findByEmail(data.getEmail()).getRoles().contains(UserRole.ROLE_COMPANY)) {
                 return ResponseEntity.ok(getResponseDto(data));
             }
             throw new BadCredentialsException("Invalid username/password");

@@ -1,7 +1,9 @@
 package com.codecool.travelish.service;
 
+import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.repository.CompanyRepository;
 import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +18,18 @@ import java.util.stream.Collectors;
 public class JobService {
     private final JobsRepository jobsRepository;
     private final AppUserService appUserService;
+    private final CompanyRepository companyRepository;
 
     @Autowired
-    public JobService(JobsRepository jobsRepository, AppUserService appUserService) {
+    public JobService(JobsRepository jobsRepository, AppUserService appUserService, CompanyRepository companyRepository) {
         this.jobsRepository = jobsRepository;
         this.appUserService = appUserService;
+        this.companyRepository = companyRepository;
     }
 
-    public void saveJob(Job job) {
+    public void saveJob(Job job, Long companyId) {
+        Company company = companyRepository.findById(companyId).orElseThrow(() -> new IllegalArgumentException("You need to Log In"));
+        job.setCompany(company);
         jobsRepository.save(job);
     }
 
@@ -110,7 +116,7 @@ public class JobService {
     }
 
     public void updateJobDetails(Job job,  Long id) {
-        jobsRepository.updateJobDetails(job.getCategory(),job.getCity(),job.getCountry(), job.getDate(), job.getDescription(), job.getJobType(), job.getSalary(), job.getTitle(), id);
+        jobsRepository.updateJobDetails(job.getCategory(),job.getCity(),job.getCountry(), job.getDate(), job.getDescription(), job.getJobType(), job.getExperienceType(), job.getSalary(), job.getTitle(), id);
     }
 
     public void deleteJob(@PathVariable Long id) {

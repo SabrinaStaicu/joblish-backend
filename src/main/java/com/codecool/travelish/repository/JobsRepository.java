@@ -1,5 +1,7 @@
 package com.codecool.travelish.repository;
 
+import com.codecool.travelish.model.company.Company;
+import com.codecool.travelish.model.job.ExperienceType;
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.job.JobType;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,8 +24,8 @@ public interface JobsRepository extends JpaRepository<Job, Long> {
 
     @Modifying
     @Transactional
-    @Query("update Job j set j.category = ?1, j.city = ?2, j.country = ?3, j.date = ?4, j.description = ?5, j.jobType = ?6, j.salary = ?7, j.title = ?8 where j.id = ?9")
-    void updateJobDetails(String category, String city, String country, LocalDate date, String description, JobType jobType, int salary, String title, Long id);
+    @Query("update Job j set j.category = ?1, j.city = ?2, j.country = ?3, j.date = ?4, j.description = ?5, j.jobType = ?6, j.experienceType = ?7, j.salary = ?8, j.title = ?9  where j.id = ?10")
+    void updateJobDetails(String category, String city, String country, LocalDate date, String description, JobType jobType, ExperienceType experienceType, int salary, String title, Long id);
 
     List<Job> findAllByCategoryIn(List<String> lst);
 }
