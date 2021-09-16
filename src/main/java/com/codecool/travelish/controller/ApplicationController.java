@@ -60,6 +60,7 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.filterByStatus(userId, status));
     }
 
+    @PreAuthorize("hasRole('COMPANY')")
     @GetMapping("/applications-for-company/{companyId}")
     public ResponseEntity<List<Application>> getAllForCompany(@PathVariable Long companyId) {
         return ResponseEntity.ok(applicationService.findAllCurrentApplicationForCompany(companyId));
