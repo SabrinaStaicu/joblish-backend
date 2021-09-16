@@ -1,8 +1,6 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.job.Job;
-import com.codecool.travelish.model.user.AppUser;
-import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,6 @@ import java.util.Set;
 @Controller
 @CrossOrigin("*")
 @RequestMapping("/jobs")
-@PreAuthorize("hasRole('USER') or hasRole('COMPANY')")
 public class JobController {
     private final JobService jobService;
 
@@ -92,4 +89,5 @@ public class JobController {
        jobService.saveJob(job, companyId);
         return ResponseEntity.ok("Job has been added successfully.");
     }
+
 }
