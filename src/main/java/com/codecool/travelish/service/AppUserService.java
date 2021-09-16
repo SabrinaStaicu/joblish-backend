@@ -32,14 +32,13 @@ public class AppUserService {
 
     public void save(AppUser appUser) {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-//        appUser.setRoles(Set.of(AppUserRole.USER));
         appUserRepository.save(appUser);
     }
 
     public void updateJobPreferences(Long id, JobPreferences jobPreferences) {
-//        AppUser appUser = findById(id);
-//        appUser.setJobPreferences(jobPreferences);
-        jobPreferencesRepository.updateJobsPreferences(jobPreferences.isOpenToWork(), 4L);
+        AppUser appUser = findById(id);
+        appUser.setJobPreferences(jobPreferences);
+        appUserRepository.save(appUser);
     }
 
     public void update(Long id, AppUser updatedUser) {

@@ -4,6 +4,8 @@ import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +21,8 @@ public class Application {
     private ApplicationStatus status;
     private LocalDate date;
     private String notes;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     private Job job;
 
