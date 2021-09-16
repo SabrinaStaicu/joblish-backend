@@ -45,7 +45,7 @@ public class AuthController {
         this.companyService = companyService;
     }
 
-    @PostMapping("/sign-in")
+    @PostMapping("/sign-in/user")
     public ResponseEntity<?> userSignIn(@RequestBody LoginRequestDto data) {
         try {
             if (appUserService.existsByEmail(data.getEmail())) {
