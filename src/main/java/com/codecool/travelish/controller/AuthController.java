@@ -4,6 +4,7 @@ import com.codecool.travelish.model.authentication.LoginRequestDto;
 import com.codecool.travelish.model.authentication.LoginResponseDto;
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.user.AppUser;
+import com.codecool.travelish.model.user.JobPreferences;
 import com.codecool.travelish.model.user.UserRole;
 import com.codecool.travelish.security.JwtTokenService;
 import com.codecool.travelish.service.AppUserService;
@@ -74,6 +75,7 @@ public class AuthController {
         if (appUserService.existsByEmail(appUser.getEmail())) {
             return ResponseEntity.badRequest().body("An account with this email already exists.");
         }
+        appUser.setJobPreferences(new JobPreferences(true));
         appUserService.save(appUser);
         return ResponseEntity.ok("User has been registered successfully.");
     }

@@ -26,20 +26,19 @@ public class JobPreferences {
     @ElementCollection
     private List<String> locations = new ArrayList<>();
 
-    private String startDate;
-
     @ElementCollection
     private List<String> jobTypes =  new ArrayList<>();
 
-    public JobPreferences(boolean openToWork, List<String> jobTitles, List<String> locations, String startDate, List<String> jobTypes) {
+    public JobPreferences(boolean openToWork, List<String> jobTitles, List<String> locations, List<String> jobTypes) {
         this.openToWork = openToWork;
         this.jobTitles = jobTitles;
         this.locations = locations;
-        this.startDate = startDate;
         this.jobTypes = jobTypes;
     }
 
     public JobPreferences(boolean openToWork) {
         this.openToWork = openToWork;
     }
+
+
 }
