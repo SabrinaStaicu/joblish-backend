@@ -1,6 +1,8 @@
 package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.application.Application;
+import com.codecool.travelish.model.application.ApplicationStatus;
+import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,5 +86,11 @@ public class ApplicationController {
     @GetMapping("/company-unique-applications/{companyId}")
     public ResponseEntity<List<AppUser>> getAllUniqueApplicantsForCompany(@PathVariable Long companyId) {
         return ResponseEntity.ok(applicationService.getAllCompanyApplicants(companyId));
+    }
+
+    @PutMapping ("/update-status/{id}")
+    public ResponseEntity<String> updateJobPreferences(@RequestBody Application application, @PathVariable Long id) {
+        applicationService.updateStatus(application, id);
+        return ResponseEntity.ok("Status has been updated.");
     }
 }
