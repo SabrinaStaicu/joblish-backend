@@ -5,6 +5,7 @@ import com.codecool.travelish.model.user.AppUser;
 import com.codecool.travelish.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,29 +61,20 @@ public class JobService {
         List<Job> filteredJobs = new ArrayList<>();
         List<Job> copy;
         List<Job> copy2 = new ArrayList<>();
-
         if (!category.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCategory().equals(category)).collect(Collectors.toList());
 
         }
-
-
         if (!country.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCountry().equals(country)).collect(Collectors.toList());
         }
-
         copy= jobs;
-
         for (String jobtype : jobType) {
             if (!jobtype.equals("undefined")) {
-//                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
                 filteredJobs.addAll(copy.stream().filter(job -> job.getJobType().toString().equals(jobtype)).collect(Collectors.toList()));
             }
         }
-
         copy2 = !filteredJobs.isEmpty() ? filteredJobs : jobs;
-
-
         long totalFilters = experienceType.stream().filter(str -> str.equals("undefined")).count();
         if (totalFilters < 4) {
             filteredJobs = new ArrayList<>();
@@ -90,22 +82,9 @@ public class JobService {
         }
         for (String experience : experienceType) {
             if (!experience.equals("undefined")) {
-//                jobs = copy.stream().filter(job -> job.getJobType().equals(jobtype)).collect(Collectors.toList());
                 filteredJobs.addAll(copy2.stream().filter(job -> job.getExperienceType().toString().equals(experience)).collect(Collectors.toList()));
             }
         }
-//        if (category.equals("undefined")) {
-//            category = null;
-//        }
-//        if (jobType.equals("undefined")) {
-//            jobType = null;
-//        }
-//        if (country.equals("undefined")) {
-//            country = null;
-//        }
-//
-//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("salary").withIgnoreNullValues();
-//        Example<Job> exampleQuery = Example.of(new Job(country,jobType,experienceType,category), matcher);
         return !filteredJobs.isEmpty() ? filteredJobs : jobs;
 
     }
@@ -132,5 +111,9 @@ public class JobService {
 
     public void updateJobDetails(Job job,  Long id) {
         jobsRepository.updateJobDetails(job.getCategory(),job.getCity(),job.getCountry(), job.getDate(), job.getDescription(), job.getJobType(), job.getSalary(), job.getTitle(), id);
+    }
+
+    public void deleteJob(@PathVariable Long id) {
+        jobsRepository.deleteById(id);
     }
 }

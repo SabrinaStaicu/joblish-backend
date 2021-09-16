@@ -83,4 +83,10 @@ public class JobController {
         return ResponseEntity.ok("Job has been updated.");
     }
 
+    @PreAuthorize("hasRole('COMPANY')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteJob(@PathVariable Long id) {
+        jobService.deleteJob(id);
+        return ResponseEntity.ok("Job has been deleted.");
+    }
 }

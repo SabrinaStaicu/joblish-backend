@@ -12,6 +12,7 @@ import com.codecool.travelish.repository.JobsRepository;
 import com.codecool.travelish.service.AppUserService;
 import com.codecool.travelish.service.ApplicationService;
 import com.codecool.travelish.service.CompanyService;
+import com.codecool.travelish.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,15 @@ public class Data implements CommandLineRunner {
     private final AppUserService appUserService;
     private final ApplicationService applicationService;
     private final CompanyService companyService;
+    private final JobService jobService;
 
     @Autowired
-    public Data(JobsRepository jobsRepository, AppUserService appUserService, ApplicationService applicationService, CompanyService companyService){
+    public Data(JobsRepository jobsRepository, AppUserService appUserService, ApplicationService applicationService, CompanyService companyService, JobService jobService){
         this.jobsRepository = jobsRepository;
         this.appUserService = appUserService;
         this.applicationService = applicationService;
         this.companyService = companyService;
+        this.jobService = jobService;
     }
 
     @Override

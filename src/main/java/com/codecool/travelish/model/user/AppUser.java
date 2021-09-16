@@ -36,7 +36,7 @@ public class AppUser {
     @Size(min = 3, max = 35)
     private String phone;
     private String picture;
-//    @Enumerated(EnumType.STRING)
+
     @ElementCollection
     private Set<UserRole> roles = Set.of(UserRole.ROLE_USER);
     @NotBlank
@@ -52,7 +52,7 @@ public class AppUser {
     @Transient
     private String notes;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Job> favoriteJobs;
 
     @ElementCollection

@@ -84,6 +84,7 @@ public class ApplicationService {
                     application.setStatus(ApplicationStatus.Denied);
                     save(application);
                 });
+        jobService.deleteJob(acceptedApplication.getJob().getId());
     }
 
     public void rejectApplication(long id) {
