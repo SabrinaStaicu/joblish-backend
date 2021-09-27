@@ -22,33 +22,44 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotBlank
     @Size(min = 3, max = 25)
     private String firstName;
+
     @NotBlank
     @Size(min = 3, max = 25)
     private String lastName;
+
     @NotBlank
     @Size(min = 3, max = 25)
     private String city;
+
     private String experience;
+
     @NotBlank
     @Size(min = 3, max = 35)
     private String phone;
+
     private String picture;
 
     @ElementCollection
     private Set<UserRole> roles = Set.of(UserRole.ROLE_USER);
+
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
+
     @NotBlank
     @Size(min = 5, max = 30)
     private String password;
+
     private Boolean lookingForJob;
+
     @Transient
     private LocalDate date;
+
     @Transient
     private String notes;
 

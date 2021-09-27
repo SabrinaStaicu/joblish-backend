@@ -1,11 +1,9 @@
 package com.codecool.travelish.model.authentication;
 
-import com.codecool.travelish.model.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor

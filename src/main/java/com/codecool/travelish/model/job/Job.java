@@ -14,17 +14,26 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
+
     private LocalDate date;
+
     private String country;
+
     @Enumerated(EnumType.STRING)
     private JobType jobType;
+
     @Enumerated(EnumType.STRING)
     private ExperienceType experienceType;
+
     private String category;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
     private int salary;
+
     private String city;
 
 

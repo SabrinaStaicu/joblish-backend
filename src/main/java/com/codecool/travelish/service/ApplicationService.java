@@ -71,7 +71,6 @@ public class ApplicationService {
 
     public List<Application> findAllCurrentApplicationForCompany(long id) {
         List<Application> applications = findAll().stream().filter(application -> application.getStatus() == ApplicationStatus.Not_seen || application.getStatus() == ApplicationStatus.Seen && application.getJob().getCompany().getId() == id).collect(Collectors.toList());
-//        applications.forEach(application -> application.setStatus(ApplicationStatus.Seen));
         return applications;
     }
 

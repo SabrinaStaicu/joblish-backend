@@ -17,9 +17,12 @@ public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+
     private LocalDate date;
+
     private String notes;
 
     @OnDelete(action = OnDeleteAction.CASCADE)

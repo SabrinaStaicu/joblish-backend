@@ -17,19 +17,25 @@ public class Company {
     @Id
     @GeneratedValue
     private Long id;
+
     @NotBlank
     @Size(max = 30)
     private String name;
+
     @NotBlank
     @Size(max = 30)
     @Email
     private String email;
+
     @NotBlank
     @Size(min = 5)
     private String password;
+
     @Column(columnDefinition = "TEXT")
     private String logo;
+
     private String description;
+
     @NotBlank
     private String category;
 

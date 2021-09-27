@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface JobPreferencesRepository extends JpaRepository<JobPreferences, Long> {
-
     @Modifying
     @Transactional
     @Query("update JobPreferences u set u.openToWork = ?1 where u.id = ?2")
