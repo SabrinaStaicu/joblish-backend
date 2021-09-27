@@ -1,19 +1,19 @@
 package com.codecool.travelish.model.user;
 
-import com.codecool.travelish.model.job.JobType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties
+//@Builder
 public class JobPreferences {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

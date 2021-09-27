@@ -2,6 +2,7 @@ package com.codecool.travelish.model.application;
 
 import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.user.AppUser;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 @Entity(name = "application")
 @Data
 @NoArgsConstructor
+//@Builder
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

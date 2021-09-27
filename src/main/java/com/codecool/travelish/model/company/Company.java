@@ -1,6 +1,7 @@
 package com.codecool.travelish.model.company;
 
 import com.codecool.travelish.model.user.UserRole;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
+//@Builder
 public class Company {
     @Id
     @GeneratedValue

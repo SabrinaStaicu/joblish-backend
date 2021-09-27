@@ -92,7 +92,6 @@ public class JobService {
             }
         }
         return !filteredJobs.isEmpty() ? filteredJobs : jobs;
-
     }
 
     public void addToJobToFavorites(Long userId, Long jobId) {

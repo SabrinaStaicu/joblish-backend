@@ -2,6 +2,7 @@ package com.codecool.travelish.model.user;
 
 import com.codecool.travelish.model.job.Job;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties
+//@Builder
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

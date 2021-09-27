@@ -1,6 +1,7 @@
 package com.codecool.travelish.model.job;
 
 import com.codecool.travelish.model.company.Company;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+//@Builder
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
