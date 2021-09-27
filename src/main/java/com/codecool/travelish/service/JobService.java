@@ -58,25 +58,29 @@ public class JobService {
 
     }
 
-    public List<Job> filterJobs(String country, List<String> jobType, List<String> experienceType, String category){
+    public List<Job> filterByCountryAndCategory(String country, String category) {
         List<Job> jobs = jobsRepository.findAll();
-        List<Job> filteredJobs = new ArrayList<>();
-        List<Job> copy;
-        List<Job> copy2 = new ArrayList<>();
         if (!category.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCategory().equals(category)).collect(Collectors.toList());
-
         }
         if (!country.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCountry().equals(country)).collect(Collectors.toList());
         }
-        copy = jobs;
+        return jobs;
+    }
+
+    public List<Job> filterJobs(String country, List<String> jobType, List<String> experienceType, String category){
+        List<Job> jobs = filterByCountryAndCategory(country, category);
+        List<Job> filteredJobs = new ArrayList<>();
+        List<Job> firstCopy;
+        List<Job> secondCopy;
+        firstCopy = jobs;
         for (String jobtype : jobType) {
             if (!jobtype.equals("undefined")) {
-                filteredJobs.addAll(copy.stream().filter(job -> job.getJobType().toString().equals(jobtype)).collect(Collectors.toList()));
+                filteredJobs.addAll(firstCopy.stream().filter(job -> job.getJobType().toString().equals(jobtype)).collect(Collectors.toList()));
             }
         }
-        copy2 = !filteredJobs.isEmpty() ? filteredJobs : jobs;
+        secondCopy = !filteredJobs.isEmpty() ? filteredJobs : jobs;
         long totalFilters = experienceType.stream().filter(str -> str.equals("undefined")).count();
         if (totalFilters < 4) {
             filteredJobs = new ArrayList<>();
@@ -84,7 +88,7 @@ public class JobService {
         }
         for (String experience : experienceType) {
             if (!experience.equals("undefined")) {
-                filteredJobs.addAll(copy2.stream().filter(job -> job.getExperienceType().toString().equals(experience)).collect(Collectors.toList()));
+                filteredJobs.addAll(secondCopy.stream().filter(job -> job.getExperienceType().toString().equals(experience)).collect(Collectors.toList()));
             }
         }
         return !filteredJobs.isEmpty() ? filteredJobs : jobs;
