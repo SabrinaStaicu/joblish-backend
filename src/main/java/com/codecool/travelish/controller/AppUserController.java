@@ -58,4 +58,10 @@ public class AppUserController {
     public ResponseEntity<List<AppUser>> searchUsers(@PathVariable String searchInput, @PathVariable Boolean openToWork) {
         return ResponseEntity.ok(appUserService.searchByName(searchInput, openToWork));
     }
+
+    @GetMapping("/add-new-skill/{userId}/{skill}")
+    public ResponseEntity<String> addNewSkill(@PathVariable Long userId, @PathVariable String skill) {
+        appUserService.addNewSkill(userId, skill);
+        return ResponseEntity.ok("Skill added.");
+    }
 }

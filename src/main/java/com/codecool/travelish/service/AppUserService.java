@@ -70,6 +70,12 @@ public class AppUserService {
                 .filter(appUser -> (appUser.getFirstName() + " " + appUser.getLastName()).toLowerCase().contains(searchInput.toLowerCase()) && openToWork == appUser.getJobPreferences().isOpenToWork())
                 .collect(Collectors.toList());
     }
+
+    public void addNewSkill(Long id, String skill) {
+        AppUser user = findById(id);
+        user.addSkill(skill);
+        appUserRepository.save(user);
+    }
 }
 
 

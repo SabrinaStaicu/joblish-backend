@@ -101,4 +101,8 @@ public class AppUser {
         favoriteJobs.remove(job);
     }
 
+    public void addSkill(String skill) {
+        skills.add(skill);
+    }
+
 }

@@ -33,10 +33,6 @@ public class JobService {
         jobsRepository.save(job);
     }
 
-    public void saveAllJobs(List<Job> jobs) {
-        jobsRepository.saveAll(jobs);
-    }
-
     public Job findById(Long id) {
         return jobsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Could not find job with id: " + id));
@@ -74,7 +70,7 @@ public class JobService {
         if (!country.equals("undefined")) {
             jobs = jobs.stream().filter(job -> job.getCountry().equals(country)).collect(Collectors.toList());
         }
-        copy= jobs;
+        copy = jobs;
         for (String jobtype : jobType) {
             if (!jobtype.equals("undefined")) {
                 filteredJobs.addAll(copy.stream().filter(job -> job.getJobType().toString().equals(jobtype)).collect(Collectors.toList()));
