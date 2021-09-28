@@ -27,10 +27,10 @@ public class JobService {
         this.companyRepository = companyRepository;
     }
 
-    public void saveJob(Job job, Long companyId) {
+    public Job saveJob(Job job, Long companyId) {
         Company company = companyRepository.findById(companyId).orElseThrow(() -> new IllegalArgumentException("You need to Log In"));
         job.setCompany(company);
-        jobsRepository.save(job);
+        return jobsRepository.save(job);
     }
 
     public Job findById(Long id) {

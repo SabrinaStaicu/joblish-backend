@@ -1,6 +1,7 @@
 package com.codecool.travelish.model.job;
 
 import com.codecool.travelish.model.company.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Job {
 
     private String title;
 
+    @JsonIgnore
     private LocalDate date;
 
     private String country;

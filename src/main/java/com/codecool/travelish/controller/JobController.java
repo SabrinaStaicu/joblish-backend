@@ -92,8 +92,7 @@ public class JobController {
 
     @PreAuthorize("hasRole('COMPANY')")
     @PostMapping("/add-job/{companyId}")
-    public ResponseEntity<?> registerUser(@RequestBody Job job, @PathVariable Long companyId) {
-       jobService.saveJob(job, companyId);
-        return ResponseEntity.ok("Job has been added successfully.");
+    public ResponseEntity<Job> registerUser(@RequestBody Job job, @PathVariable Long companyId) {
+       return ResponseEntity.ok(jobService.saveJob(job, companyId));
     }
 }
