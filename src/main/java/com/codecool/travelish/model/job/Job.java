@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
-//@Builder
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

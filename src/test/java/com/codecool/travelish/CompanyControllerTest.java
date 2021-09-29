@@ -7,7 +7,6 @@ import com.codecool.travelish.model.job.JobType;
 import com.codecool.travelish.repository.CompanyRepository;
 import com.codecool.travelish.repository.JobsRepository;
 import com.codecool.travelish.service.CompanyService;
-import com.codecool.travelish.service.JobService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,7 +19,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
 @AutoConfigureMockMvc

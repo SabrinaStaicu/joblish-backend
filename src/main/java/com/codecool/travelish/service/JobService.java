@@ -49,6 +49,7 @@ public class JobService {
     public List<Job> findAllJobsByName(String name) {
         return jobsRepository.findAllByTitleContaining(name);
     }
+
     public List<Job> findAllJobsByNameAndCategory(String category,String name) {
         return jobsRepository.findAllByCategoryAndTitleContaining(category,name);
     }

@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @Entity(name = "application")
 @Data
 @NoArgsConstructor
-//@Builder
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

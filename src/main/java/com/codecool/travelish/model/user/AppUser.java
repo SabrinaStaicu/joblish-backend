@@ -19,7 +19,6 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties
-//@Builder
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

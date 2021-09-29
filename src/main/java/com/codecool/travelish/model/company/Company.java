@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
-//@Builder
 public class Company {
     @Id
     @GeneratedValue

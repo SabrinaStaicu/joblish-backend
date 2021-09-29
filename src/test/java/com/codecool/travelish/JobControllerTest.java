@@ -6,8 +6,6 @@ import com.codecool.travelish.model.job.Job;
 import com.codecool.travelish.model.job.JobType;
 import com.codecool.travelish.repository.CompanyRepository;
 import com.codecool.travelish.repository.JobsRepository;
-import com.codecool.travelish.service.CompanyService;
-import com.codecool.travelish.service.JobService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,12 +17,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import static org.mockito.BDDMockito.given;
-import static org.hamcrest.Matchers.*;
+
+import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -42,7 +41,6 @@ public class JobControllerTest {
 
     private final List<Job> jobs = new ArrayList<>();
     private final ObjectMapper mapper = new ObjectMapper();
-
 
     @BeforeEach
     void init() {
@@ -72,5 +70,14 @@ public class JobControllerTest {
                         .content(mapper.writeValueAsString(job)))
                 .andExpect(MockMvcResultMatchers.status().isOk());
         jobsRepository.delete(jobsRepository.findAll().get(jobsRepository.findAll().size() - 1));
+    }
+
+    @Test
+    @WithMockUser(roles = "COMPANY")
+    void deleteJob() throws Exception {
+        Long jobId = jobsRepository.findAll().get(jobsRepository.findAll().size() - 1).getId();
+        mockMvc.perform(MockMvcRequestBuilders.delete("/jobs/{jobId}", jobId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

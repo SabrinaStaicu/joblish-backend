@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties
-//@Builder
 public class JobPreferences {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
