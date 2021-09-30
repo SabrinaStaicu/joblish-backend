@@ -71,7 +71,7 @@ To get a local copy up and running follow these simple steps.
    ```
    spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
    spring.jpa.hibernate.ddl-auto=create-drop
-   spring.datasource.url=jdbc:postgresql://localhost:5432/joblish
+   spring.datasource.url=databaseURL
    spring.datasource.username=yourUsername
    spring.datasource.password=yourPassword
    spring.jpa.show-sql=false
