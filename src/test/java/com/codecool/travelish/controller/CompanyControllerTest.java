@@ -1,4 +1,4 @@
-package com.codecool.travelish;
+package com.codecool.travelish.controller;
 
 import com.codecool.travelish.model.company.Company;
 import com.codecool.travelish.model.job.ExperienceType;
