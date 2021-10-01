@@ -92,7 +92,7 @@ public class AppUserControllerTest {
     }
 
     @Test
-    void getAllUsers() throws Exception {
+    void getAllUsers_responseOk() throws Exception {
         appUserService.save(appUser);
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/users/all")
