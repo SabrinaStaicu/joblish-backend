@@ -2,6 +2,7 @@ package com.codecool.travelish.model.job;
 
 import com.codecool.travelish.model.company.Company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +21,6 @@ public class Job {
 
     private String title;
 
-    @JsonIgnore
     private LocalDate date;
 
     private String country;
