@@ -21,6 +21,7 @@ import java.util.List;
 
 @Component
 public class Data implements CommandLineRunner {
+
     private final JobsRepository jobsRepository;
     private final AppUserService appUserService;
     private final ApplicationService applicationService;

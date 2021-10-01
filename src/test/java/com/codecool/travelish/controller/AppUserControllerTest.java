@@ -54,23 +54,8 @@ public class AppUserControllerTest {
     AppUser appUser = new AppUser("Osmanthus", "Wine","Bucharest","No experience. Just graduated.","3223112123","https://media.cancan.ro/unsafe/750x750/smart/filters:contrast(5):quality(80)/https://tacataca.prosport.ro/wp-content/uploads/2021/03/dorian-popa1.jpg","andrei_penica@yahoo.com", "password", new JobPreferences(true, List.of("System administator", "Full-stack developer", "Devops Engineer"), List.of("Bucharest ", "Budapest ", "London "), List.of("Full-time", "Part-time")), List.of("Microsoft Office", "HTML", "CSS", "Golang", "Microservices", "COBOL", "Java"));
 
 
-//    @Test
-//    void getById_validId_responseOk() throws Exception {
-//        Mockito.when(appUserService.findById(1L)).thenReturn(appUser);
-////        Mockito.when(appUserRepository.findById(1L)).thenReturn(java.util.Optional.of(appUser));
-//
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.get("/users/{id}", 1L)
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.lastName",is("Penica")));
-//
-//
-//    }
-
     @Test
     void getById_validId_responseOk() throws Exception {
-//        Mockito.when(appUserService.findById(1L)).thenReturn(appUser);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/users/{id}", 3L)
