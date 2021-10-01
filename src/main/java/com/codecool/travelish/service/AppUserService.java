@@ -7,6 +7,7 @@ import com.codecool.travelish.repository.JobPreferencesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -75,6 +76,10 @@ public class AppUserService {
         AppUser user = findById(id);
         user.addSkill(skill);
         appUserRepository.save(user);
+    }
+
+    public void deleteUser(@PathVariable Long id) {
+        appUserRepository.deleteById(id);
     }
 }
 
