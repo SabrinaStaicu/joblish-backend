@@ -28,17 +28,17 @@ Joblish is a recruitment platform web application that is composed of 3 reposito
 - Two frontend apps
 <ol>
     <li>
-        <a href="https://github.com/bogdaniordan/joblish-frontend">User</a> 
+        <a href="https://github.com/SabrinaStaicu/joblish-frontend">User</a> 
     </li>
     <li>    
-        <a href="https://github.com/bogdaniordan/joblish-companies-frontend">Company</a> 
+        <a href="https://github.com/SabrinaStaicu/joblish-companies-frontend">Company</a> 
     </li>
 </ol>
 
 - One backend app
 <ol>
     <li>
-        <a href="https://github.com/bogdaniordan/joblish-backend">Backend</a>
+        <a href="https://github.com/SabrinaStaicu/joblish-backend">Backend</a>
     </li>
 
 </ol>
