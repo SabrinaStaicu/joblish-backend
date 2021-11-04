@@ -26,11 +26,11 @@
 
 ## Intro
 Joblish is a recruitment platform web application that is composed of 3 repositories.
-- Two frontend apps
-  <a href="https://github.com/SabrinaStaicu/joblish-frontend">User</a>   
-  <a href="https://github.com/SabrinaStaicu/joblish-companies-frontend">Company</a> 
-- One backend app
-  <a href="https://github.com/SabrinaStaicu/joblish-backend">Backend</a>
+- Two frontend apps</br>
+  <a href="https://github.com/SabrinaStaicu/joblish-frontend">User</a></br>
+  <a href="https://github.com/SabrinaStaicu/joblish-companies-frontend">Company</a></br>
+- One backend app</br>
+  <a href="https://github.com/SabrinaStaicu/joblish-backend">Backend</a></br>
 
 This repo in particular handles backend side.
 
