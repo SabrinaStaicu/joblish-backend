@@ -5,34 +5,27 @@
 <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
 <ol>
 <li>
+    <a href="#intro">Intro</a>
+</li>
+<li>
     <a href="#about-the-project">About The Project</a>
     <ul>
-    <li><a href="#built-with">Built With</a></li>
+        <li><a href="#backend">Backend</a></li>
+    </ul>
+    <ul>
+        <li><a href="#frontend">Frontend</a></li>
+    </ul>
+    <ul>
+        <li><a href="#technologies">Technologies</a></li>
     </ul>
 </li>
 <li>
     <a href="#getting-started">Getting Started</a>
-    <ul>
-    <li><a href="#installation">Installation</a></li>
-    </ul>
 </li>
-
 </ol>
 
-
+## Intro
 Joblish is a recruitment platform web application that is composed of 3 repositories.
-
-## About The Project
-### Backend
-- It is build using the Spring Boot framework, we use annotations for the components
-- It uses Lombok to get rid of boilerplate code 
-- At startup the database is populated with preset data by implementing the CommandLineRunner class in a component
-- We use a Postgresql database and Hibernate for ORM
-- It uses Spring Security to secure endpoints
-- We check data with Javax Bean Validation
-### Frontend
-- 
-
 - Two frontend apps
 <ol>
     <li>
@@ -55,6 +48,19 @@ This repo in particular handles backend side.
 
 All the api requests from both frontend apps access this app to send data or receive data from the database
 
+## About The Project
+### Backend
+- It is build using the Spring Boot framework, we use annotations for the components
+- It uses Lombok to get rid of boilerplate code 
+- At startup the database is populated with preset data by implementing the CommandLineRunner class in a component
+- We use a Postgresql database and Hibernate for ORM
+- It uses Spring Security to secure endpoints
+- We check data with Javax Bean Validation
+### Frontend
+- It is developed using React hooks and and classes
+- We use axios for creating http requests and obtaining data from the backend
+- The design is made mostly in CSS with minimal inline styling
+- For state management we chose Jotai
 
 ### Technologies
 #### Backend
@@ -75,6 +81,7 @@ All the api requests from both frontend apps access this app to send data or rec
 - HTML5
 - CSS
 - SCSS
+- Jotai
 - NodeJS
 - NPM
 
