@@ -20,6 +20,13 @@
     </ul>
 </li>
 <li>
+    <a href="#overview">Overview</a>
+    <ul>
+        <li><a href="#user-frontend">User Frontend</a></li>
+        <li><a href="#company-frontend">Company Frontend</a></li>
+    </ul>    
+</li>
+<li>
     <a href="#getting-started">Getting Started</a>
 </li>
 </ol>
@@ -72,6 +79,39 @@ All the api requests from both frontend apps access this app to send data or rec
 - Jotai
 - NodeJS
 - NPM
+
+## Overview
+### User Frontend
+- We have a homepage with a search bar for jobs. <br/>
+  ![Image](https://i.imgur.com/WG5n6oV.png)<br/>
+- A registration form.<br/>
+  ![Image](https://i.imgur.com/jkY0eWx.png)<br/>
+- A login form.<br/>
+  ![Image](https://i.imgur.com/yrQ39Ct.png)<br/>
+- An user details page.<br/>
+  ![Image](https://i.imgur.com/RSxM8oG.png)<br/>
+- A job search page with multiple filters.<br/>
+  ![Image](https://i.imgur.com/DYsohWy.png)<br/>
+- A page with companies where we can see the positions they offer.<br/>
+  ![Image](https://i.imgur.com/81dHULt.png)<br/>
+  ![Image](https://i.imgur.com/9AApfRn.png)<br/>
+  
+### Company Frontend
+- We have a homepage.<br/>
+![Image](https://i.imgur.com/Nw4uuQM.png)<br/>
+- A registration form.<br/>
+![Image](https://i.imgur.com/Mrr3SIm.png)<br/>
+- A login form.<br/>
+![Image](https://i.imgur.com/upi1eIk.png)<br/>
+- A dashboard.<br/>
+![Image](https://i.imgur.com/72Mpkej.png)<br/>
+- A modal to see the current posted jobs.<br/>
+![Image](https://i.imgur.com/xA32arI.png)<br/>
+- A form to add a new job offer.<br/>
+![Image](https://i.imgur.com/IdedOrb.png)<br/>
+- A page to see all applicants.<br/>
+- An edit page for the job.<br/>
+- A settings page where you can change your password.<br/>
 
 <!-- GETTING STARTED -->
 
