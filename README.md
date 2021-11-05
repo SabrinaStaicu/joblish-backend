@@ -77,7 +77,6 @@ All the api requests from both frontend apps access this app to send data or rec
 - CSS
 - SCSS
 - Jotai
-- NodeJS
 - NPM
 
 ## Overview
